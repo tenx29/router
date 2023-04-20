@@ -30,8 +30,8 @@ CsrpMessageBuilder.new = function()
 	self.InteractionId = HttpService:GenerateGUID(false)
 	local options: {[string]: any} = {}
 	self.Options = options
-	local payload: string = nil
-	self.Payload = payload
+	local body: string = nil
+	self.Body = body
 	return self
 end
 
@@ -81,13 +81,13 @@ CsrpMessageBuilder.SetOption = function(self: CsrpMessageBuilder, option: string
 	return self
 end
 
-CsrpMessageBuilder.SetPayload = function(self: CsrpMessageBuilder, payload: any?): CsrpMessageBuilder
-	self.Payload = tostring(payload)
+CsrpMessageBuilder.SetBody = function(self: CsrpMessageBuilder, body: any?): CsrpMessageBuilder
+	self.Body = tostring(body)
 	return self
 end
 
 CsrpMessageBuilder.Build = function(self: CsrpMessageBuilder): CsrpMessage
-	return CsrpMessage.new(self.Sender, self.Recipients, self.InteractionId, nil, nil, self.Options, self.Payload)
+	return CsrpMessage.new(self.Sender, self.Recipients, self.InteractionId, nil, nil, self.Options, self.Body)
 end
 
 export type CsrpMessageBuilder = typeof(CsrpMessageBuilder.new())
