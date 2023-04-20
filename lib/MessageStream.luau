@@ -62,7 +62,7 @@ MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, 
         if message.InteractionId then
             local bufferIsComplete = BufferFragment(self, message)
             if bufferIsComplete then
-                local defragmentedMessage = Fragmenter.DefragmentMessages(self.FragmentBuffers[message.InteractionId])
+                local defragmentedMessage = Fragmenter.DefragmentMessages(self.FragmentBuffers[message.InteractionId].Fragments)
                 self.FragmentBuffers[message.InteractionId] = nil
                 callback(defragmentedMessage, data.Sent)
             end
