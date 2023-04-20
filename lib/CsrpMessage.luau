@@ -86,9 +86,9 @@ CsrpMessage.fromString = function(message: string): CsrpMessage
 	local fragment = if #sections[4] > 0 then tonumber(sections[4]) else nil
 	local fragmentCount = if #sections[5] > 0 then tonumber(sections[5]) else nil
 	local options = sections[6]
-	local concatPayload = table.concat(sections, ";", 7)
-	local payload = if #concatPayload == 0 then nil else concatPayload
-	return CsrpMessage.new(sender, recipients, interactionId, fragment, fragmentCount, options, payload)
+	local concatBody = table.concat(sections, ";", 7)
+	local body = if #concatBody == 0 then nil else concatBody
+	return CsrpMessage.new(sender, recipients, interactionId, fragment, fragmentCount, options, body)
 end
 
 -- Convert a CsrpMessage object to a string
@@ -99,8 +99,8 @@ CsrpMessage.__tostring = function(self: CsrpMessage)
 	local fragment = tostring(self.Fragment or "")
 	local fragmentCount = tostring(self.FragmentCount or "")
 	local options = self.Options
-	local payload = self.Payload or ""
-	return `{sender};{recipients};{interactionId};{fragment};{fragmentCount};{options};{payload}`
+	local body = self.Body or ""
+	return `{sender};{recipients};{interactionId};{fragment};{fragmentCount};{options};{body}`
 end
 
 export type CsrpMessage = typeof(CsrpMessage.new("", nil, "", nil, nil, nil, nil))
