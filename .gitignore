@@ -1,0 +1,10 @@
+# Place files
+*.rbxlx
+*.rbxl
+
+# Model files
+*.rbxm
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
