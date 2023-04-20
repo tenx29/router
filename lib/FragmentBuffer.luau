@@ -38,7 +38,7 @@ end
 -- Adds a fragment to the buffer.
 FragmentBuffer.Add = function(self: FragmentBuffer, fragment: CsrpMessage)
     assert(self.CutOffTime > tick(), "Attempted to add fragment to timed out buffer")
-    local fragmentNumber = fragment.Fragment
+    local fragmentNumber = fragment.Fragment or 1
     self.TotalFragments = fragment.FragmentCount or self.TotalFragments
     self.Fragments[fragmentNumber] = fragment
     self.CutOffTime = tick() + self.Timeout
