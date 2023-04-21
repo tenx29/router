@@ -63,4 +63,6 @@ Fragmenter.DefragmentMessages = function(messages: {CsrpMessage}): CsrpMessage
 	return CsrpMessage.new(origin, target, id, nil, nil, options, body)
 end
 
+export type Fragmenter = typeof(Fragmenter)
+
 return Fragmenter
