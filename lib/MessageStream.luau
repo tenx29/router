@@ -4,19 +4,21 @@
 
     Class for handling CSRP message streams.
 ]]
-
 local MessagingService = game:GetService("MessagingService")
 
-local CsrpMessage = require(script.Parent.CsrpMessage)
-local CsrpMessageBuilder = require(script.Parent.CsrpMessageBuilder)
+local RouterLib = script.Parent
+local CsrpMessage = require(RouterLib.CsrpMessage)
+local CsrpMessageBuilder = require(RouterLib.CsrpMessageBuilder)
 export type CsrpMessage = CsrpMessage.CsrpMessage
 export type CsrpMessageBuilder = CsrpMessageBuilder.CsrpMessageBuilder
 
-local FragmentBuffer = require(script.Parent.FragmentBuffer)
+local FragmentBuffer = require(RouterLib.FragmentBuffer)
+local StreamConnection = require(RouterLib.StreamConnection)
 export type FragmentBuffer = FragmentBuffer.FragmentBuffer
+export type StreamConnection = StreamConnection.StreamConnection
 
-local Fragmenter = require(script.Parent.Fragmenter)
-local Router = require(script.Parent.Router)
+local Fragmenter = require(RouterLib.Fragmenter)
+local Router = require(RouterLib.Router)
 
 local MessageStream = {}
 MessageStream.__index = MessageStream
@@ -26,8 +28,6 @@ local DEFAULT_MESSAGE_STREAM_TOPIC = "CSRP_GLOBAL"
 MessageStream.new = function(topic: string?)
     local self = setmetatable({}, MessageStream)
     self.Topic = topic or DEFAULT_MESSAGE_STREAM_TOPIC
-    local buffers: {[string]: FragmentBuffer} = {}
-    self.FragmentBuffers = buffers
     return self
 end
 
@@ -39,20 +39,28 @@ MessageStream.Send = function(self: MessageStream, message: CsrpMessage)
 end
 
 -- Buffers a fragment and returns a boolean indicating whether the buffer is complete.
-local function BufferFragment(self: MessageStream, fragment: CsrpMessage): boolean
+local function BufferFragment(connection: StreamConnection, fragment: CsrpMessage): boolean
     local interactionId = fragment.InteractionId
-    local buffer = self.FragmentBuffers[interactionId]
-    if not buffer then
-        buffer = FragmentBuffer.new()
-        self.FragmentBuffers[interactionId] = buffer
+    if not connection.Buffers[interactionId] then
+        local buffer = FragmentBuffer.new(2)
+        connection.Buffers[interactionId] = buffer
+        buffer.TimedOut:Connect(function(err: string?)
+            FragmentBuffer:Dispose()
+            error(err or "Fragment buffer timed out.")
+        end)
     end
-    buffer:Add(fragment)
-    return buffer:IsComplete()
+    connection.Buffers[interactionId]:Add(fragment)
+    return connection.Buffers[interactionId]:IsComplete()
 end
 
 -- Subscribes to the message stream and returns a connection.
-MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, number) -> nil): RBXScriptConnection
-    return MessagingService:SubscribeAsync(self.Topic, function(data: {Data: string, Sent: number})
+MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, number) -> nil): StreamConnection
+    assert(callback, "Callback must be provided.")
+    -- Define a local buffer collection for this subscription.
+    -- This is necessary because the same topic can be subscribed to multiple times.
+    local buffers: {[string]: {FragmentBuffer}} = {}
+    local streamConnection: StreamConnection
+    local connection = MessagingService:SubscribeAsync(self.Topic, function(data: {Data: string, Sent: number})
         local message = CsrpMessage.fromString(data.Data)
         -- Check if the message should be processed by the current server.
         if not Router.IsCurrentServerRecipient(message) then
@@ -60,16 +68,19 @@ MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, 
         end
         -- If the message has an interaction ID, it can be handled as a fragment.
         if message.InteractionId then
-            local bufferIsComplete = BufferFragment(self, message)
+            local bufferIsComplete = BufferFragment(streamConnection, message)
             if bufferIsComplete then
-                local defragmentedMessage = Fragmenter.DefragmentMessages(self.FragmentBuffers[message.InteractionId].Fragments)
-                self.FragmentBuffers[message.InteractionId] = nil
+                local defragmentedMessage = Fragmenter.DefragmentMessages(buffers[message.InteractionId].Fragments)
+                streamConnection.Buffers[message.InteractionId]:Dispose()
+                streamConnection.Buffers[message.InteractionId] = nil
                 callback(defragmentedMessage, data.Sent)
             end
         else
             callback(message, data.Sent)
         end
     end)
+    streamConnection = StreamConnection.new(connection, buffers)
+    return streamConnection
 end
 
 export type MessageStream = typeof(MessageStream.new())
