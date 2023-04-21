@@ -54,7 +54,7 @@ local function optionsToString(options: {[string]: any} | string?): string
 			end
 		end
 		return validateSectionString(result)
-	end	
+	end
 end
 
 CsrpMessage.new = function(sender: string?, recipients: {string} | string?, interactionId: string, fragment: number?, fragmentCount: number?, options: {[string]: any} | string?, body: string?): CsrpMessage
