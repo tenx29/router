@@ -20,28 +20,30 @@ FragmentBuffer.new = function(timeout: number?): FragmentBuffer
     self.CutOffTime = tick() + self.Timeout
     local _timeoutEvent = Instance.new("BindableEvent")
     self.TimedOut = _timeoutEvent.Event
-    self.ThrowTimeoutError = function(self: FragmentBuffer, err: string)
+
+    local function throwTimeoutError(err: string)
         _timeoutEvent:Fire(err)
     end
+
+    self.DoTimeout = function(obj: FragmentBuffer)
+        -- Begin timeout task
+        task.delay(obj.Timeout, function(cutOffTime: number)
+            -- If the cut off time has changed, the buffer has been reset and this timeout task should be cancelled.
+            if obj.CutOffTime ~= cutOffTime then
+                return
+            end
+            -- Throw an error if the buffer is not complete and the timeout has been reached.
+            -- If the CutOffTime 0 or negative, the buffer has been disabled and no error should be thrown.
+            if obj.CutOffTime > 0 and not obj:IsComplete() and tick() > obj.CutOffTime then
+                -- Clear the buffer to free up memory.
+                obj.Fragments = {}
+                throwTimeoutError()
+            end
+        end, obj.CutOffTime)
+    end
+
     self:DoTimeout()
     return self
-end
-
-FragmentBuffer.DoTimeout = function(self: FragmentBuffer)
-    -- Begin timeout task
-    task.delay(self.Timeout, function(cutOffTime: number)
-        -- If the cut off time has changed, the buffer has been reset and this timeout task should be cancelled.
-        if self.CutOffTime ~= cutOffTime then
-            return
-        end
-        -- Throw an error if the buffer is not complete and the timeout has been reached.
-        -- If the CutOffTime 0 or negative, the buffer has been disabled and no error should be thrown.
-        if self.CutOffTime > 0 and not self:IsComplete() and tick() > self.CutOffTime then
-            -- Clear the buffer to free up memory.
-            self.Fragments = {}
-            self:ThrowTimeoutError()
-        end
-    end, self.CutOffTime)
 end
 
 -- Adds a fragment to the buffer.
