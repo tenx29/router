@@ -30,14 +30,7 @@ local function recipientsToString(recipients: {string} | string?): string
 	elseif typeof(recipients) == "string" then
 		return recipients
 	else
-		local result = ""
-		for _, recipient in recipients do
-			if #result > 0 then
-				result ..= ","
-			end
-			result ..= recipient
-		end
-		return result
+		return table.concat(recipients, ",")
 	end
 end
 
