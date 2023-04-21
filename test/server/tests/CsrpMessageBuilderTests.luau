@@ -1,5 +1,3 @@
-local HttpService = game:GetService("HttpService")
-
 local router = script.Parent.Parent.Parent.Router
 local CsrpMessageBuilder = require(router.CsrpMessageBuilder)
 
