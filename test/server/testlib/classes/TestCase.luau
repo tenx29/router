@@ -48,7 +48,7 @@ TestCase.Run = function(self: TestCase)
     -- If the test failed, but we expected it to fail, check if the error matches the expected error (if any)
     elseif not success and self._expectFail then
         -- If the error doesn't match the expected error, report the error
-        if self._expectedError and not err:find(self._expectedError) then
+        if self._expectedError and not err:lower():find(self._expectedError:lower()) then
             self._state = "Failed"
             self._error = "Expected test to fail with error '" .. self._expectedError .. "', but it failed with error '" .. err .. "'"
         
