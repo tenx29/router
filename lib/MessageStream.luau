@@ -42,7 +42,7 @@ end
 local function BufferFragment(connection: StreamConnection, fragment: CsrpMessage): boolean
     local interactionId = fragment.InteractionId
     if not connection.Buffers[interactionId] then
-        local buffer = FragmentBuffer.new(2)
+        local buffer = FragmentBuffer.new()
         connection.Buffers[interactionId] = buffer
         buffer.TimedOut:Connect(function(err: string?)
             FragmentBuffer:Dispose()
