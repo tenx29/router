@@ -8,6 +8,7 @@ TestCase.new = function(name: string, fn: () -> ())
     self._name = name
     self._fn = fn
     self._before = {}
+    self._after = {}
     self._state = "Not run"
     self._error = nil
     self._skip = false
@@ -63,10 +64,19 @@ TestCase.Run = function(self: TestCase, env: {[string]: any?})
         self._state = "Failed"
         self._error = if self._expectFail then "Expected test to fail, but it passed" else err
     end
+
+    for _, fn in ipairs(self._after) do
+        fn(env)
+    end
 end
 
 TestCase.Before = function(self: TestCase, fn: () -> ())
     table.insert(self._before, fn)
+    return self
+end
+
+TestCase.After = function(self: TestCase, fn: () -> ())
+    table.insert(self._after, fn)
     return self
 end
 

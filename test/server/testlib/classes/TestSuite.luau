@@ -18,6 +18,7 @@ TestSuite.new = function(name: string, tests: {TestCase | TestSuite})
     self._failedTests = 0
     self._skippedTests = 0
     self._totalTests = 0
+    self._after = {}
     return self
 end
 
@@ -44,6 +45,9 @@ TestSuite.Run = function(self: TestSuite, env: {[string]: any?})
     if self._state == "Running" then
         self._state = "Passed"
     end
+    for _, fn in ipairs(self._after) do
+        fn(env)
+    end
 end
 
 TestSuite.BeforeEach = function(self: TestSuite, fn: () -> ())
@@ -52,6 +56,22 @@ TestSuite.BeforeEach = function(self: TestSuite, fn: () -> ())
             test:Before(fn)
         elseif test.BeforeEach then
             test:BeforeEach(fn)
+        end
+    end
+    return self
+end
+
+TestSuite.AfterAll = function(self: TestSuite, fn: () -> ())
+    table.insert(self._after, fn)
+    return self
+end
+
+TestSuite.AfterEach = function(self: TestSuite, fn: () -> ())
+    for _, test in ipairs(self._tests) do
+        if test.AfterEach then
+            test:AfterEach(fn)
+        else
+            test:After(fn)
         end
     end
     return self
@@ -109,7 +129,7 @@ TestSuite.GetReport = function(self: TestSuite): string
     local skipped = self._skippedTests
     local total = self._totalTests
     local report = `{emoji} {name} ({passed} passed, {failed} failed, {skipped} skipped, {total} total, {runTime})`
-    if state == "Failed" then
+    if state == "Failed" and self._error then
         report ..= `: {self._error}`
     end
 
