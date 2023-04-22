@@ -34,7 +34,21 @@ end
 MessageStream.Send = function(self: MessageStream, message: CsrpMessage)
     local fragments = Fragmenter.FragmentMessage(message)
     for _, fragment in ipairs(fragments) do
-        MessagingService:PublishAsync(self.Topic, tostring(fragment))
+        -- If sending a fragment fails, retry 10 times with a 1 second delay.
+        local success = false
+        local err = nil
+        for i = 1, 10 do
+            success, err = pcall(function()
+                MessagingService:PublishAsync(self.Topic, tostring(fragment))
+            end)
+            if success then
+                break
+            end
+            -- Waiting is not necessary in the mock environment.
+        end
+        if not success then
+            error(err)
+        end
     end
 end
 
