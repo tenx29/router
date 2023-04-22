@@ -1,0 +1,11 @@
+[package]
+name = "tenx29/router"
+description = "Cross-server messaging library"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+license = "MIT"
+include = ["default.project.json", "lib", "lib/**", "LICENSE", "wally.toml"]
+exclude = ["**"]
+
+[dependencies]
