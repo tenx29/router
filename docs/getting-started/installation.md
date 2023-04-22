@@ -13,7 +13,7 @@
 
     ```toml
     [dependencies]
-    name = "tenx29/router@^0.1.0"
+    name = "tenx29/router@^1.0.0"
     ```
 
 3. Run `wally install`.
