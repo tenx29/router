@@ -1,10 +1,10 @@
 --!strict
 local CsrpMessage = require(script.Parent.CsrpMessage)
 type CsrpMessage = CsrpMessage.CsrpMessage
-local Router = {}
+local RoutingUtil = {}
 
 -- Check if a message was sent by the current server
-Router.IsCurrentServerSender = function(message: CsrpMessage | string): boolean
+RoutingUtil.IsCurrentServerSender = function(message: CsrpMessage | string): boolean
 	local jobId = if #game.JobId > 0 then game.JobId else "localhost"
 	if typeof(message) == "string" then
 		message = CsrpMessage.fromString(message)
@@ -13,7 +13,7 @@ Router.IsCurrentServerSender = function(message: CsrpMessage | string): boolean
 end
 
 -- Check if a message is supposed to be processed by the current server
-Router.IsCurrentServerRecipient = function(message: CsrpMessage | string): boolean
+RoutingUtil.IsCurrentServerRecipient = function(message: CsrpMessage | string): boolean
 	if typeof(message) == "string" then
 		message = CsrpMessage.fromString(message)
 	end
@@ -32,4 +32,4 @@ Router.IsCurrentServerRecipient = function(message: CsrpMessage | string): boole
 	return include or false
 end
 
-return Router
+return RoutingUtil

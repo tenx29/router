@@ -18,7 +18,7 @@ export type FragmentBuffer = FragmentBuffer.FragmentBuffer
 export type StreamConnection = StreamConnection.StreamConnection
 
 local Fragmenter = require(RouterLib.Fragmenter)
-local Router = require(RouterLib.Router)
+local RoutingUtil = require(RouterLib.RoutingUtil)
 
 local MessageStream = {}
 MessageStream.__index = MessageStream
@@ -78,7 +78,7 @@ MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, 
     local connection = MessagingService:SubscribeAsync(self.Topic, function(data: {Data: string, Sent: number})
         local message = CsrpMessage.fromString(data.Data)
         -- Check if the message should be processed by the current server.
-        if not Router.IsCurrentServerRecipient(message) then
+        if not RoutingUtil.IsCurrentServerRecipient(message) then
             return
         end
         -- If the message has an interaction ID, it can be handled as a fragment.
