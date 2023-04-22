@@ -23,7 +23,7 @@ export type CsrpMessage = CsrpMessage.CsrpMessage
 local CsrpMessageBuilder = {}
 CsrpMessageBuilder.__index = CsrpMessageBuilder
 
-CsrpMessageBuilder.new = function()
+CsrpMessageBuilder.new = function(): CsrpMessageBuilder
 	local self = setmetatable({}, CsrpMessageBuilder)
 	self.Sender = game.JobId
 	self.Recipients = {}

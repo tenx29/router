@@ -11,7 +11,7 @@ export type FragmentBuffer = FragmentBuffer.FragmentBuffer
 local StreamConnection = {}
 StreamConnection.__index = StreamConnection
 
-StreamConnection.new = function(connection: RBXScriptConnection, buffers: {[string]: FragmentBuffer})
+StreamConnection.new = function(connection: RBXScriptConnection, buffers: {[string]: FragmentBuffer}): StreamConnection
     local self = setmetatable({}, StreamConnection)
     self.Connection = connection
     self.Connected = true

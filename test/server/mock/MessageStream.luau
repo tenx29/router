@@ -25,7 +25,7 @@ MessageStream.__index = MessageStream
 
 local DEFAULT_MESSAGE_STREAM_TOPIC = "CSRP_GLOBAL"
 
-MessageStream.new = function(topic: string?)
+MessageStream.new = function(topic: string?): MessageStream
     local self = setmetatable({}, MessageStream)
     self.Topic = topic or DEFAULT_MESSAGE_STREAM_TOPIC
     return self
