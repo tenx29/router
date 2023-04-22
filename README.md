@@ -26,3 +26,7 @@ Message routing library for MessagingService on Roblox. Uses the [Cross-server R
 For building the library as an RBXM file, you will need to use [Rojo](https://rojo.space/) with the `default.project.json` file. This will build only the Router library as a model.
 
 The `test.project.json` file is provided for testing purposes, and will build a place file with the Router library and a unit testing module.
+
+## Documentation
+
+Documentation for the library can be found on the [GitHub Pages site](https://tenx29.github.io/router/).
