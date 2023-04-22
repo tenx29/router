@@ -25,9 +25,10 @@ MessageStream.__index = MessageStream
 
 local DEFAULT_MESSAGE_STREAM_TOPIC = "CSRP_GLOBAL"
 
-MessageStream.new = function(topic: string?): MessageStream
+MessageStream.new = function(topic: string?, bufferTimeout: number?): MessageStream
     local self = setmetatable({}, MessageStream)
     self.Topic = topic or DEFAULT_MESSAGE_STREAM_TOPIC
+    self.BufferTimeout = bufferTimeout or 10
     return self
 end
 
@@ -53,10 +54,10 @@ MessageStream.Send = function(self: MessageStream, message: CsrpMessage)
 end
 
 -- Buffers a fragment and returns a boolean indicating whether the buffer is complete.
-local function BufferFragment(connection: StreamConnection, fragment: CsrpMessage): boolean
+local function BufferFragment(connection: StreamConnection, fragment: CsrpMessage, bufferTimeout: number?): boolean
     local interactionId = fragment.InteractionId
     if not connection.Buffers[interactionId] then
-        local buffer = FragmentBuffer.new()
+        local buffer = FragmentBuffer.new(bufferTimeout)
         connection.Buffers[interactionId] = buffer::FragmentBuffer
         buffer.TimedOut:Connect(function(err: string?)
             buffer:Dispose()
@@ -83,7 +84,7 @@ MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, 
         end
         -- If the message has an interaction ID, it can be handled as a fragment.
         if message.InteractionId then
-            local bufferIsComplete = BufferFragment(streamConnection, message)
+            local bufferIsComplete = BufferFragment(streamConnection, message, self.BufferTimeout)
             if bufferIsComplete then
                 local defragmentedMessage = Fragmenter.DefragmentMessages(buffers[message.InteractionId].Fragments)
                 streamConnection.Buffers[message.InteractionId]:Dispose()

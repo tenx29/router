@@ -28,7 +28,7 @@ return TestSuite.new("MessageStream tests", {
     -- Messages are received
     TestCase.new("Messages are received", function()
         local count, counter = getCounter()
-        local stream = MessageStream.new("test")
+        local stream = MessageStream.new("test", 2)
         local connection = stream:Subscribe(counter)
         stream:Send(CsrpMessageBuilder.new():Build())
         connection:Disconnect()
@@ -40,7 +40,7 @@ return TestSuite.new("MessageStream tests", {
         -- Connection is returned when subscribing
         TestCase.new("Connection is returned when subscribing", function()
             local _, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local connection = stream:Subscribe(counter)
             connection:Disconnect()
             Assert.IsType("table", connection)
@@ -51,7 +51,7 @@ return TestSuite.new("MessageStream tests", {
         -- Buffer is cleared after receiving single message
         TestCase.new("Buffer is cleared after receiving single message", function()
             local _, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
             local connection = stream:Subscribe(counter)
             stream:Send(message)
@@ -62,7 +62,7 @@ return TestSuite.new("MessageStream tests", {
         -- Fragmented messages are buffered until complete
         TestCase.new("Fragmented messages are buffered until complete", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
             message.FragmentCount = 2
             message.Fragment = 1
@@ -82,7 +82,7 @@ return TestSuite.new("MessageStream tests", {
         -- Concurrent buffers are created for different interaction ids
         TestCase.new("Concurrent buffers are created for different interaction ids", function()
             local _, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
             message.FragmentCount = 2
             message.Fragment = 1
@@ -123,7 +123,7 @@ return TestSuite.new("MessageStream tests", {
         -- Multiple subscribers can buffer messages
         TestCase.new("Multiple subscribers can buffer messages", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
             message.FragmentCount = 2
             message.Fragment = 1
@@ -147,7 +147,7 @@ return TestSuite.new("MessageStream tests", {
         -- Messages are not buffered after disconnect
         TestCase.new("Messages are not buffered after disconnect", function()
             local _, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
             message.FragmentCount = 2
             message.Fragment = 1
@@ -160,7 +160,7 @@ return TestSuite.new("MessageStream tests", {
         -- Active buffers are disposed when disconnecting
         TestCase.new("Active buffers are disposed when disconnecting", function()
             local _, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
             message.FragmentCount = 2
             message.Fragment = 1
@@ -173,7 +173,7 @@ return TestSuite.new("MessageStream tests", {
 
         TestCase.new("Time out event is fired", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
             message.FragmentCount = 2
             message.Fragment = 1
@@ -188,7 +188,7 @@ return TestSuite.new("MessageStream tests", {
     
         TestCase.new("Can't add to timed out buffer", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
             message.FragmentCount = 2
             message.Fragment = 1
@@ -205,7 +205,7 @@ return TestSuite.new("MessageStream tests", {
     TestSuite.new("Message routing tests", {
         TestCase.new("Broadcast is routed to all servers", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local connection = stream:Subscribe(counter)
             local message = CsrpMessageBuilder.new():Build()
             stream:Send(message)
@@ -215,7 +215,7 @@ return TestSuite.new("MessageStream tests", {
 
         TestCase.new("localhost is routed to Roblox Studio", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local connection = stream:Subscribe(counter)
             local message = CsrpMessageBuilder.new():AddRecipient("localhost"):Build()
             stream:Send(message)
@@ -225,7 +225,7 @@ return TestSuite.new("MessageStream tests", {
 
         TestCase.new("Address negation works", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local connection = stream:Subscribe(counter)
             local message = CsrpMessageBuilder.new():AddRecipient("localhost"):AddRecipient("-localhost"):Build()
             stream:Send(message)
@@ -235,7 +235,7 @@ return TestSuite.new("MessageStream tests", {
 
         TestCase.new("Messages for other servers are ignored", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local connection = stream:Subscribe(counter)
             local message = CsrpMessageBuilder.new():AddRecipient("other"):Build()
             stream:Send(message)
@@ -245,7 +245,7 @@ return TestSuite.new("MessageStream tests", {
 
         TestCase.new("Global negation is not processed", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local connection = stream:Subscribe(counter)
             local message = CsrpMessageBuilder.new():AddRecipient("-"):Build()
             stream:Send(message)
@@ -255,7 +255,7 @@ return TestSuite.new("MessageStream tests", {
 
         TestCase.new("'All servers except' expression is processed correctly", function()
             local count, counter = getCounter()
-            local stream = MessageStream.new("test")
+            local stream = MessageStream.new("test", 2)
             local connection = stream:Subscribe(counter)
             local message = CsrpMessageBuilder.new():AddRecipient(""):AddRecipient("-localhost"):Build()
             stream:Send(message)
