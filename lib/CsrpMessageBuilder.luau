@@ -57,7 +57,7 @@ end
 
 CsrpMessageBuilder.ExcludeRecipient = function(self: CsrpMessageBuilder, recipient: string): CsrpMessageBuilder
 	assert(recipient:find(";") == nil, "Illegal character (;) in recipient: "..recipient)
-	if recipient:find("-") then
+	if recipient:sub(1, 1) == "-" then
 		warn(`Excluded recipient id "{recipient}" starts with a hyphen resulting in two hyphens in a row. This may not be intended.`)
 	end
 	table.insert(self.Recipients, "-"..recipient)
