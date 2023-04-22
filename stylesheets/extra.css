@@ -1,0 +1,26 @@
+[data-md-color-scheme=slate] {
+    --md-default-bg-color: #1e1e20;
+}
+
+.md-footer {
+    background-color: transparent;
+}
+
+.md-footer nav a {
+    color: var(--md-typeset-color);
+    border-radius: 1em;
+    border: 1px solid;
+    border-color: var(--md-default-bg-color--light);
+    /* Transition for the border color */
+    transition: border-color 0.2s ease-in-out;
+}
+
+.md-footer nav a:hover {
+    color: var(--md-typeset-color);
+    background-color: transparent;
+    border-color: var(--md-primary-fg-color);
+}
+
+.md-footer nav .md-footer__direction {
+    color: var(--md-default-fg-color);
+}
