@@ -21,13 +21,13 @@ FragmentBuffer.new = function(timeout: number?): FragmentBuffer
     local _timeoutEvent = Instance.new("BindableEvent")
     self.TimedOut = _timeoutEvent.Event
 
-    local function throwTimeoutError(err: string)
+    local function throwTimeoutError(err: string?)
         _timeoutEvent:Fire(err)
     end
 
     self.DoTimeout = function(obj: FragmentBuffer)
         -- Begin timeout task
-        task.delay(obj.Timeout, function(cutOffTime: number)
+        task.delay(obj.Timeout::number, function(cutOffTime: number)
             -- If the cut off time has changed, the buffer has been reset and this timeout task should be cancelled.
             if obj.CutOffTime ~= cutOffTime then
                 return

@@ -11,11 +11,11 @@ export type FragmentBuffer = FragmentBuffer.FragmentBuffer
 local StreamConnection = {}
 StreamConnection.__index = StreamConnection
 
-StreamConnection.new = function(connection: RBXScriptConnection, buffers: {[string]: {FragmentBuffer}})
+StreamConnection.new = function(connection: RBXScriptConnection, buffers: {[string]: FragmentBuffer})
     local self = setmetatable({}, StreamConnection)
     self.Connection = connection
     self.Connected = true
-    self.Buffers = buffers
+    self.Buffers = buffers:: {[string]: FragmentBuffer}
     return self
 end
 
@@ -31,6 +31,6 @@ end
 
 StreamConnection.__newindex = nil
 
-export type StreamConnection = typeof(StreamConnection.new(nil, {}))
+export type StreamConnection = typeof(StreamConnection.new(game.Close:Connect(function() end), {}))
 
 return StreamConnection

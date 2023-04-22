@@ -57,14 +57,15 @@ local function BufferFragment(connection: StreamConnection, fragment: CsrpMessag
     local interactionId = fragment.InteractionId
     if not connection.Buffers[interactionId] then
         local buffer = FragmentBuffer.new(2)
-        connection.Buffers[interactionId] = buffer
+        connection.Buffers[interactionId] = buffer::FragmentBuffer
         buffer.TimedOut:Connect(function(err: string?)
-            FragmentBuffer:Dispose()
+            buffer:Dispose()
             error(err or "Fragment buffer timed out.")
         end)
     end
     connection.Buffers[interactionId]:Add(fragment)
-    return connection.Buffers[interactionId]:IsComplete()
+    local buffer = connection.Buffers[interactionId]
+    return (buffer.IsComplete::(FragmentBuffer) -> boolean)(buffer)
 end
 
 -- Subscribes to the message stream and returns a connection.
@@ -72,7 +73,7 @@ MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, 
     assert(callback, "Callback must be provided.")
     -- Define a local buffer collection for this subscription.
     -- This is necessary because the same topic can be subscribed to multiple times.
-    local buffers: {[string]: {FragmentBuffer}} = {}
+    local buffers: {[string]: FragmentBuffer} = {}
     local streamConnection: StreamConnection
     local connection = MessagingService:SubscribeAsync(self.Topic, function(data: {Data: string, Sent: number})
         local message = CsrpMessage.fromString(data.Data)

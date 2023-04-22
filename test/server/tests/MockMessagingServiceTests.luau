@@ -12,12 +12,13 @@ local Assert = require(testlib.Assert)
 -- Second return value is a function that increments the count
 local function getCounter(): (() -> number, () -> ())
     local count = 0
-    return function()
+    local getCount = function()
         return count
-    end,
-    function()
+    end
+    local increment = function()
         count += 1
     end
+    return getCount, increment
 end
 
 return TestSuite.new("Mock MessagingService tests", {
