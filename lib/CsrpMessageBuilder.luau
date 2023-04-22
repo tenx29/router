@@ -49,9 +49,13 @@ CsrpMessageBuilder.SetRecipients = function(self: CsrpMessageBuilder, recipients
 	return self
 end
 
-CsrpMessageBuilder.AddRecipient = function(self: CsrpMessageBuilder, recipient: string): CsrpMessageBuilder
+CsrpMessageBuilder.AddRecipient = function(self: CsrpMessageBuilder, recipient: string, excludeCurrentForBroadcast: boolean?): CsrpMessageBuilder
 	assert(recipient:find(";") == nil, "Illegal character (;) in recipient: "..recipient)
 	table.insert(self.Recipients, recipient)
+	local jobId = if #game.JobId == 0 then "localhost" else game.JobId
+	if recipient == "" and excludeCurrentForBroadcast ~= false then
+		table.insert(self.Recipients, "-"..jobId)
+	end
 	return self
 end
 

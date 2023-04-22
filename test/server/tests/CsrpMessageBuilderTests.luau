@@ -27,6 +27,16 @@ return TestSuite.new("CSRP Message Builder Tests", {
         Assert.Equals("test", message.Recipients)
     end),
 
+    TestCase.new("Broadcasting excludes localhost by default", function()
+        local message = CsrpMessageBuilder.new():AddRecipient(""):Build()
+        Assert.Equals(",-localhost", message.Recipients)
+    end),
+
+    TestCase.new("Sender can be included in broadcasts", function()
+        local message = CsrpMessageBuilder.new():AddRecipient("", false):Build()
+        Assert.Equals("", message.Recipients)
+    end),
+
     TestCase.new("ExcludeRecipient() adds a recipient prefixed with -", function()
         local message = CsrpMessageBuilder.new():ExcludeRecipient("test"):Build()
         Assert.Equals("-test", message.Recipients)
