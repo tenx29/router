@@ -18,7 +18,7 @@ TestCase.new = function(name: string, fn: () -> ())
     return self
 end
 
-TestCase.Run = function(self: TestCase)
+TestCase.Run = function(self: TestCase, env: {[string]: any?})
     if self._state ~= "Not run" then
         return
     end
@@ -29,11 +29,11 @@ TestCase.Run = function(self: TestCase)
     self._state = "Running"
     if #self._before > 0 then
         for _, fn in ipairs(self._before) do
-            fn()
+            fn(env)
         end
     end
     self._startTick = tick()
-    local success, err = pcall(self._fn)
+    local success, err = pcall(self._fn, env)
     self._endTick = tick()
 
     -- If the test passed, and we didn't expect it to fail, report success

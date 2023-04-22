@@ -21,7 +21,7 @@ TestSuite.new = function(name: string, tests: {TestCase | TestSuite})
     return self
 end
 
-TestSuite.Run = function(self: TestSuite)
+TestSuite.Run = function(self: TestSuite, env: {[string]: any?})
     if self._state ~= "Not run" then
         return
     end
@@ -35,7 +35,7 @@ TestSuite.Run = function(self: TestSuite)
         if self._skip then
             test:Skip()
         end
-        test:Run()
+        test:Run(env)
         if test._state == "Failed" then
             self._state = "Failed"
         end
