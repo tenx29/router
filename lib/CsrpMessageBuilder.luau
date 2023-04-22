@@ -74,9 +74,9 @@ CsrpMessageBuilder.SetOption = function(self: CsrpMessageBuilder, option: string
 	assert(option:find("=") == nil, "Illegal character (=) in option name: "..option)
 	assert(option:find(",") == nil, "Illegal character (,) in option name: "..option)
 	assert(option:find(";") == nil, "Illegal character (;) in option name: "..option)
-	assert(value:find("=") == nil, "Illegal character (=) in option value: "..value)
-	assert(value:find(",") == nil, "Illegal character (,) in option value: "..value)
-	assert(value:find(";") == nil, "Illegal character (;) in option value: "..value)
+	assert(tostring(value):find("=") == nil, "Illegal character (=) in option value: "..tostring(value))
+	assert(tostring(value):find(",") == nil, "Illegal character (,) in option value: "..tostring(value))
+	assert(tostring(value):find(";") == nil, "Illegal character (;) in option value: "..tostring(value))
 	self.Options[option] = value
 	return self
 end
