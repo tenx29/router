@@ -20,6 +20,7 @@ end
 -- Run all tests in the tests container and get a report of the results
 Runner.Run = function(container: Instance, env: {[string]: any?}): string
     local rootSuite = Runner.Discover(container)
+    rootSuite:Reset()
     print("Running tests...")
     rootSuite:Run(env)
     print("Generating report...")

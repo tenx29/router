@@ -82,6 +82,20 @@ TestSuite.Skip = function(self: TestSuite)
     return self
 end
 
+TestSuite.Reset = function(self: TestSuite)
+    self._state = "Not run"
+    self._skip = false
+    self._startTick = 0
+    self._endTick = 0
+    self._passedTests = 0
+    self._failedTests = 0
+    self._skippedTests = 0
+    self._totalTests = 0
+    for _, test in ipairs(self._tests) do
+        test:Reset()
+    end
+end
+
 -- Return the test suite name and state. If the test suite failed, return the error message.
 TestSuite.GetReport = function(self: TestSuite): string
     local state = self._state

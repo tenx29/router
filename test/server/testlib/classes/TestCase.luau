@@ -85,6 +85,13 @@ TestCase.Skip = function(self: TestCase)
     return self
 end
 
+TestCase.Reset = function(self: TestCase)
+    self._state = "Not run"
+    self._skip = false
+    self._startTick = 0
+    self._endTick = 0
+end
+
 TestCase.ExpectFail = function(self: TestCase, expectedError: string?)
     self._expectFail = true
     self._expectedError = expectedError
