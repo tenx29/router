@@ -70,7 +70,7 @@ local function BufferFragment(connection: StreamConnection, fragment: CsrpMessag
 end
 
 -- Subscribes to the message stream and returns a connection.
-MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, number) -> nil): StreamConnection
+MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, number) -> ()): StreamConnection
     assert(callback, "Callback must be provided.")
     -- Define a local buffer collection for this subscription.
     -- This is necessary because the same topic can be subscribed to multiple times.
