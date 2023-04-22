@@ -37,7 +37,7 @@ MessageStream.Send = function(self: MessageStream, message: CsrpMessage)
         -- If sending a fragment fails, retry 10 times with a 1 second delay.
         local success = false
         local err = nil
-        for i = 1, 10 do
+        for _ = 1, 10 do
             success, err = pcall(function()
                 MessagingService:PublishAsync(self.Topic, tostring(fragment))
             end)
