@@ -1,0 +1,56 @@
+site_name: Router Docs
+site_url: https://tenx29.github.io/router/
+repo_name: tenx29/router
+repo_url: https://github.com/tenx29/router/
+
+nav:
+  - About: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Cross-Server Routing Protocol: getting-started/protocol.md
+    - Creating Messages: getting-started/creating-messages.md
+    - Sending & Receiving Messages: getting-started/messaging.md
+  - API Reference:
+    - CsrpMessage: api-reference/csrpmessage.md
+    - CsrpMessageBuilder: api-reference/csrpmessagebuilder.md
+    - MessageStream: api-reference/messagestream.md
+    - StreamConnection: api-reference/streamconnection.md
+    - FragmentBuffer: api-reference/fragmentbuffer.md
+    - RoutingUtil: api-reference/routingutil.md
+    - Fragmenter: api-reference/fragmenter.md
+
+extra_css:
+- stylesheets/extra.css
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.footer
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: amber
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: amber
+      accent: yellow
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
