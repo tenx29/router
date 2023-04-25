@@ -6,37 +6,82 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://tenx29.github.io/router/api-reference/csrpmessage/</loc>
+         <loc>https://tenx29.github.io/router/migrating-to-2.0.0/</loc>
          <lastmod>2023-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://tenx29.github.io/router/api-reference/csrpmessagebuilder/</loc>
+         <loc>https://tenx29.github.io/router/api-reference/1.0.0/csrpmessage/</loc>
          <lastmod>2023-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://tenx29.github.io/router/api-reference/fragmentbuffer/</loc>
+         <loc>https://tenx29.github.io/router/api-reference/1.0.0/csrpmessagebuilder/</loc>
          <lastmod>2023-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://tenx29.github.io/router/api-reference/fragmenter/</loc>
+         <loc>https://tenx29.github.io/router/api-reference/1.0.0/fragmentbuffer/</loc>
          <lastmod>2023-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://tenx29.github.io/router/api-reference/messagestream/</loc>
+         <loc>https://tenx29.github.io/router/api-reference/1.0.0/fragmenter/</loc>
          <lastmod>2023-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://tenx29.github.io/router/api-reference/routingutil/</loc>
+         <loc>https://tenx29.github.io/router/api-reference/1.0.0/messagestream/</loc>
          <lastmod>2023-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://tenx29.github.io/router/api-reference/streamconnection/</loc>
+         <loc>https://tenx29.github.io/router/api-reference/1.0.0/routingutil/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/1.0.0/streamconnection/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/2.0.0/csrpmessage/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/2.0.0/csrpmessagebuilder/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/2.0.0/csrpmessagefragment/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/2.0.0/fragmentbuffer/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/2.0.0/fragmenter/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/2.0.0/messagestream/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/2.0.0/routingutil/</loc>
+         <lastmod>2023-04-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://tenx29.github.io/router/api-reference/2.0.0/streamconnection/</loc>
          <lastmod>2023-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>

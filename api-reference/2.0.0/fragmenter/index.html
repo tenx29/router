@@ -8,27 +8,25 @@
       
       
       
-        <link rel="canonical" href="https://tenx29.github.io/router/api-reference/fragmentbuffer/">
+        <link rel="canonical" href="https://tenx29.github.io/router/api-reference/2.0.0/fragmenter/">
       
       
-        <link rel="prev" href="../streamconnection/">
+        <link rel="prev" href="../routingutil/">
       
       
-        <link rel="next" href="../routingutil/">
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
-        <title>FragmentBuffer - Router Docs</title>
+        <title>Fragmenter - Router Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ded33207.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -44,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -75,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fragmentbuffer" class="md-skip">
+        <a href="#fragmenter" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +89,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Router Docs" class="md-header__button md-logo" aria-label="Router Docs" data-md-component="logo">
+    <a href="../../.." title="Router Docs" class="md-header__button md-logo" aria-label="Router Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -110,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FragmentBuffer
+              Fragmenter
             
           </span>
         </div>
@@ -209,7 +207,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Router Docs" class="md-nav__button md-logo" aria-label="Router Docs" data-md-component="logo">
+    <a href="../../.." title="Router Docs" class="md-nav__button md-logo" aria-label="Router Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -240,8 +238,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../migrating-to-2.0.0/" class="md-nav__link">
+        Migrating to 2.0.0
       </a>
     </li>
   
@@ -260,17 +273,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
       
-        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_2">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
@@ -282,7 +295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/installation/" class="md-nav__link">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
         Installation
       </a>
     </li>
@@ -296,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/protocol/" class="md-nav__link">
+      <a href="../../../getting-started/protocol/" class="md-nav__link">
         Cross-Server Routing Protocol
       </a>
     </li>
@@ -310,7 +323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/creating-messages/" class="md-nav__link">
+      <a href="../../../getting-started/creating-messages/" class="md-nav__link">
         Creating Messages
       </a>
     </li>
@@ -324,7 +337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/messaging/" class="md-nav__link">
+      <a href="../../../getting-started/messaging/" class="md-nav__link">
         Sending & Receiving Messages
       </a>
     </li>
@@ -353,19 +366,180 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
-        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           API Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_3">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           API Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+          1.0.0
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          1.0.0
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1.0.0/csrpmessage/" class="md-nav__link">
+        CsrpMessage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1.0.0/csrpmessagebuilder/" class="md-nav__link">
+        CsrpMessageBuilder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1.0.0/messagestream/" class="md-nav__link">
+        MessageStream
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1.0.0/streamconnection/" class="md-nav__link">
+        StreamConnection
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1.0.0/fragmentbuffer/" class="md-nav__link">
+        FragmentBuffer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1.0.0/routingutil/" class="md-nav__link">
+        RoutingUtil
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1.0.0/fragmenter/" class="md-nav__link">
+        Fragmenter
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          2.0.0
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          2.0.0
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -391,6 +565,20 @@
     <li class="md-nav__item">
       <a href="../csrpmessagebuilder/" class="md-nav__link">
         CsrpMessageBuilder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csrpmessagefragment/" class="md-nav__link">
+        CsrpMessageFragment
       </a>
     </li>
   
@@ -429,167 +617,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          FragmentBuffer
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../fragmentbuffer/" class="md-nav__link">
         FragmentBuffer
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#constructors" class="md-nav__link">
-    Constructors
-  </a>
-  
-    <nav class="md-nav" aria-label="Constructors">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fragmentbuffer-new" class="md-nav__link">
-    FragmentBuffer new
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#properties" class="md-nav__link">
-    Properties
-  </a>
-  
-    <nav class="md-nav" aria-label="Properties">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#number-timeout" class="md-nav__link">
-    number Timeout
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#number-cutofftime" class="md-nav__link">
-    number CutOffTime
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#number-totalfragments" class="md-nav__link">
-    number TotalFragments
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#csrpmessage-fragments" class="md-nav__link">
-    {CsrpMessage} Fragments
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#events" class="md-nav__link">
-    Events
-  </a>
-  
-    <nav class="md-nav" aria-label="Events">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rbxscriptsignal-timedout" class="md-nav__link">
-    RBXScriptSignal TimedOut
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    Methods
-  </a>
-  
-    <nav class="md-nav" aria-label="Methods">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#void-add" class="md-nav__link">
-    void Add
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#boolean-iscomplete" class="md-nav__link">
-    boolean IsComplete
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#void-disable" class="md-nav__link">
-    void Disable
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#void-dispose" class="md-nav__link">
-    void Dispose
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -613,11 +645,79 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../fragmenter/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Fragmenter
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Fragmenter
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagefragment-fragmentmessage" class="md-nav__link">
+    {CsrpMessageFragment} FragmentMessage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessage-defragmentmessages" class="md-nav__link">
+    CsrpMessage DefragmentMessages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -656,118 +756,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#constructors" class="md-nav__link">
-    Constructors
+  <a href="#functions" class="md-nav__link">
+    Functions
   </a>
   
-    <nav class="md-nav" aria-label="Constructors">
+    <nav class="md-nav" aria-label="Functions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#fragmentbuffer-new" class="md-nav__link">
-    FragmentBuffer new
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#properties" class="md-nav__link">
-    Properties
-  </a>
-  
-    <nav class="md-nav" aria-label="Properties">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#number-timeout" class="md-nav__link">
-    number Timeout
+  <a href="#csrpmessagefragment-fragmentmessage" class="md-nav__link">
+    {CsrpMessageFragment} FragmentMessage
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#number-cutofftime" class="md-nav__link">
-    number CutOffTime
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#number-totalfragments" class="md-nav__link">
-    number TotalFragments
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#csrpmessage-fragments" class="md-nav__link">
-    {CsrpMessage} Fragments
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#events" class="md-nav__link">
-    Events
-  </a>
-  
-    <nav class="md-nav" aria-label="Events">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rbxscriptsignal-timedout" class="md-nav__link">
-    RBXScriptSignal TimedOut
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    Methods
-  </a>
-  
-    <nav class="md-nav" aria-label="Methods">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#void-add" class="md-nav__link">
-    void Add
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#boolean-iscomplete" class="md-nav__link">
-    boolean IsComplete
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#void-disable" class="md-nav__link">
-    void Disable
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#void-dispose" class="md-nav__link">
-    void Dispose
+  <a href="#csrpmessage-defragmentmessages" class="md-nav__link">
+    CsrpMessage DefragmentMessages
   </a>
   
 </li>
@@ -795,53 +800,34 @@
   
 
 
-<h1 id="fragmentbuffer">FragmentBuffer</h1>
-<p>The <code>FragmentBuffer</code> class stores the fragments of a message for reassembly. It is used by the <a href="../streamconnection/">StreamConnection</a> class.</p>
-<h2 id="constructors">Constructors</h2>
-<h3 id="fragmentbuffer-new"><a href="./">FragmentBuffer</a> new</h3>
-<div class="highlight"><pre><span></span><code><span class="n">FragmentBuffer</span><span class="p">.</span><span class="n">new</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">timeout</span><span class="p">:</span> <span class="n">number</span><span class="err">?</span><span class="p">):</span> <span class="n">FragmentBuffer</span>
+<h1 id="fragmenter">Fragmenter</h1>
+<p>Utility module for splitting messages into smaller chunks and reassembling fragmented messages. Splits messages into chunks no larger than 1000 bytes.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="csrpmessagefragment-fragmentmessage"><a href="../csrpmessagefragment/">{CsrpMessageFragment}</a> FragmentMessage</h3>
+<div class="highlight"><pre><span></span><code><span class="n">Fragmenter</span><span class="p">.</span><span class="n">FragmentMessage</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">CsrpMessage</span><span class="p">,</span> <span class="n">maxLength</span><span class="p">:</span> <span class="n">number</span><span class="err">?</span><span class="p">):</span> <span class="p">{</span><span class="n">CsrpMessageFragment</span><span class="p">}</span>
 </code></pre></div>
-<p>Returns a new <a href="./">FragmentBuffer</a> object with the given timeout. If <code>timeout</code> is not provided, 10 seconds will be used.</p>
+<p>Splits a message into smaller chunks. Returns a table of messages with a length no greater <code>maxLength</code>, or 1000 bytes if <code>maxLength</code> is nil. Automatically sets the fragment headers on the messages.</p>
 <p>Arguments:</p>
 <ol>
-<li><a href="https://create.roblox.com/docs/scripting/luau/numbers"><code>number?</code></a> <code>timeout</code> - The timeout in seconds.</li>
+<li><a href="../csrpmessage/"><code>CsrpMessage</code></a> <code>message</code> - The message to fragment.</li>
+<li><a href="https://create.roblox.com/docs/scripting/luau/numbers"><code>number?</code></a> <code>maxLength</code> - The maximum length of each fragment. Defaults to 1000.</li>
 </ol>
-<hr />
-<h2 id="properties">Properties</h2>
-<h3 id="number-timeout"><a href="https://create.roblox.com/docs/scripting/luau/numbers">number</a> Timeout</h3>
-<p>The buffer timeout in seconds. If a new fragment is not received within this time, the buffer will be cleared to prevent memory leaks.</p>
-<h3 id="number-cutofftime"><a href="https://create.roblox.com/docs/scripting/luau/numbers">number</a> CutOffTime</h3>
-<p>The time at which the buffer will be cleared if no new fragments are received.</p>
-<h3 id="number-totalfragments"><a href="https://create.roblox.com/docs/scripting/luau/numbers">number</a> TotalFragments</h3>
-<p>The number of fragments the full message is expected to have.</p>
-<h3 id="csrpmessage-fragments"><a href="https://create.roblox.com/docs/scripting/luau/tables">{CsrpMessage}</a> Fragments</h3>
-<p>The received fragments of the message. The key is the fragment index and the value is the message fragment object.</p>
-<hr />
-<h2 id="events">Events</h2>
-<h3 id="rbxscriptsignal-timedout"><a href="https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal">RBXScriptSignal</a> TimedOut</h3>
-<p>Fired when the buffer times out.</p>
-<hr />
-<h2 id="methods">Methods</h2>
-<h3 id="void-add"><a href="./#void-add">void</a> Add</h3>
-<div class="highlight"><pre><span></span><code><span class="n">FragmentBuffer</span><span class="p">:</span><span class="n">Add</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">fragment</span><span class="p">:</span> <span class="n">CsrpMessage</span><span class="p">)</span>
+<div class="admonition warning">
+<p class="admonition-title">Breaking change from 1.0.0</p>
+<p>The return type of this function was changed from <a href="../csrpmessage/"><code>{CsrpMessage}</code></a> to <a href="../csrpmessagefragment/"><code>{CsrpMessageFragment}</code></a> in 2.0.0.</p>
+</div>
+<h3 id="csrpmessage-defragmentmessages"><a href="../csrpmessage/">CsrpMessage</a> DefragmentMessages</h3>
+<div class="highlight"><pre><span></span><code><span class="n">Fragmenter</span><span class="p">.</span><span class="n">DefragmentMessages</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">messages</span><span class="p">:</span> <span class="p">{</span><span class="n">CsrpMessageFragment</span><span class="p">}):</span> <span class="n">CsrpMessage</span>
 </code></pre></div>
-<p>Adds a fragment to the buffer and resets the timeout timer.</p>
+<p>Reassembles a table of fragmented messages into a single message. Automatically removes the fragment headers from the messages and sorts the fragments by their index.</p>
 <p>Arguments:</p>
 <ol>
-<li><a href="../csrpmessage/"><code>CsrpMessage</code></a> <code>fragment</code> - The fragment to add.</li>
+<li><a href="../csrpmessagefragment/"><code>{CsrpMessageFragment}</code></a> <code>messages</code> - The messages to defragment.</li>
 </ol>
-<h3 id="boolean-iscomplete"><a href="https://create.roblox.com/docs/scripting/luau/booleans">boolean</a> IsComplete</h3>
-<div class="highlight"><pre><span></span><code><span class="n">FragmentBuffer</span><span class="p">:</span><span class="n">IsComplete</span> <span class="o">=</span> <span class="kr">function</span><span class="p">():</span> <span class="n">boolean</span>
-</code></pre></div>
-<p>Returns whether the buffer contains all of the fragments of the message.</p>
-<h3 id="void-disable"><a href="./#void-disable">void</a> Disable</h3>
-<div class="highlight"><pre><span></span><code><span class="n">FragmentBuffer</span><span class="p">:</span><span class="n">Disable</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
-</code></pre></div>
-<p>Disables the buffer. This will prevent additional fragments from being added to the buffer and will stop the timeout timer.</p>
-<h3 id="void-dispose"><a href="./#void-dispose">void</a> Dispose</h3>
-<div class="highlight"><pre><span></span><code><span class="n">FragmentBuffer</span><span class="p">:</span><span class="n">Dispose</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
-</code></pre></div>
-<p>Disables and clears the buffer.</p>
+<div class="admonition warning">
+<p class="admonition-title">Breaking change from 1.0.0</p>
+<p>The <code>messages</code> argument type was changed from <a href="../csrpmessage/"><code>{CsrpMessage}</code></a> to <a href="../csrpmessagefragment/"><code>{CsrpMessageFragment}</code></a> in 2.0.0.</p>
+</div>
 
 
 
@@ -863,7 +849,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../streamconnection/" class="md-footer__link md-footer__link--prev" aria-label="Previous: StreamConnection" rel="prev">
+          <a href="../routingutil/" class="md-footer__link md-footer__link--prev" aria-label="Previous: RoutingUtil" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -872,26 +858,11 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                StreamConnection
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../routingutil/" class="md-footer__link md-footer__link--next" aria-label="Next: RoutingUtil" rel="next">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
                 RoutingUtil
               </div>
             </div>
-            <div class="md-footer__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
           </a>
+        
         
       </nav>
     
@@ -917,10 +888,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.51198bba.min.js"></script>
       
     
   </body>

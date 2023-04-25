@@ -8,27 +8,27 @@
       
       
       
-        <link rel="canonical" href="https://tenx29.github.io/router/api-reference/streamconnection/">
+        <link rel="canonical" href="https://tenx29.github.io/router/api-reference/1.0.0/csrpmessagebuilder/">
       
       
-        <link rel="prev" href="../messagestream/">
+        <link rel="prev" href="../csrpmessage/">
       
       
-        <link rel="next" href="../fragmentbuffer/">
+        <link rel="next" href="../messagestream/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
-        <title>StreamConnection - Router Docs</title>
+        <title>CsrpMessageBuilder - Router Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ded33207.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -44,9 +44,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#streamconnection" class="md-skip">
+        <a href="#csrpmessagebuilder" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Router Docs" class="md-header__button md-logo" aria-label="Router Docs" data-md-component="logo">
+    <a href="../../.." title="Router Docs" class="md-header__button md-logo" aria-label="Router Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              StreamConnection
+              CsrpMessageBuilder
             
           </span>
         </div>
@@ -209,7 +209,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Router Docs" class="md-nav__button md-logo" aria-label="Router Docs" data-md-component="logo">
+    <a href="../../.." title="Router Docs" class="md-nav__button md-logo" aria-label="Router Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -240,8 +240,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../migrating-to-2.0.0/" class="md-nav__link">
+        Migrating to 2.0.0
       </a>
     </li>
   
@@ -260,17 +275,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
       
-        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_2">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
@@ -282,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/installation/" class="md-nav__link">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
         Installation
       </a>
     </li>
@@ -296,7 +311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/protocol/" class="md-nav__link">
+      <a href="../../../getting-started/protocol/" class="md-nav__link">
         Cross-Server Routing Protocol
       </a>
     </li>
@@ -310,7 +325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/creating-messages/" class="md-nav__link">
+      <a href="../../../getting-started/creating-messages/" class="md-nav__link">
         Creating Messages
       </a>
     </li>
@@ -324,7 +339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/messaging/" class="md-nav__link">
+      <a href="../../../getting-started/messaging/" class="md-nav__link">
         Sending & Receiving Messages
       </a>
     </li>
@@ -353,19 +368,48 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
-        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           API Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_3">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           API Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+          1.0.0
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          1.0.0
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -377,34 +421,6 @@
     <li class="md-nav__item">
       <a href="../csrpmessage/" class="md-nav__link">
         CsrpMessage
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../csrpmessagebuilder/" class="md-nav__link">
-        CsrpMessageBuilder
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../messagestream/" class="md-nav__link">
-        MessageStream
       </a>
     </li>
   
@@ -427,12 +443,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          StreamConnection
+          CsrpMessageBuilder
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        StreamConnection
+        CsrpMessageBuilder
       </a>
       
         
@@ -459,8 +475,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#streamconnection-new" class="md-nav__link">
-    StreamConnection new
+  <a href="#csrpmessagebuilder-new" class="md-nav__link">
+    CsrpMessageBuilder new
   </a>
   
 </li>
@@ -479,22 +495,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rbxscriptconnection-connection" class="md-nav__link">
-    RBXScriptConnection Connection
+  <a href="#string-sender" class="md-nav__link">
+    string Sender
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#boolean-connected" class="md-nav__link">
-    boolean Connected
+  <a href="#string-recipients" class="md-nav__link">
+    {string} Recipients
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#string-fragmentbuffer-buffers" class="md-nav__link">
-    {[string]: FragmentBuffer} Buffers
+  <a href="#string-interactionid" class="md-nav__link">
+    string InteractionId
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-any-options" class="md-nav__link">
+    {[string]: any} Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-body" class="md-nav__link">
+    string? Body
   </a>
   
 </li>
@@ -513,8 +543,57 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#void-disconnect" class="md-nav__link">
-    void Disconnect
+  <a href="#csrpmessagebuilder-setsender" class="md-nav__link">
+    CsrpMessageBuilder SetSender
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-setrecipients" class="md-nav__link">
+    CsrpMessageBuilder SetRecipients
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-addrecipient" class="md-nav__link">
+    CsrpMessageBuilder AddRecipient
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-excluderecipient" class="md-nav__link">
+    CsrpMessageBuilder ExcludeRecipient
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-setinteractionid" class="md-nav__link">
+    CsrpMessageBuilder SetInteractionId
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-setoption" class="md-nav__link">
+    CsrpMessageBuilder SetOption
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-setbody" class="md-nav__link">
+    CsrpMessageBuilder SetBody
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessage-build" class="md-nav__link">
+    CsrpMessage Build
   </a>
   
 </li>
@@ -528,6 +607,34 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../messagestream/" class="md-nav__link">
+        MessageStream
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../streamconnection/" class="md-nav__link">
+        StreamConnection
+      </a>
     </li>
   
 
@@ -580,6 +687,159 @@
     </li>
   
 
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          2.0.0
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          2.0.0
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.0.0/csrpmessage/" class="md-nav__link">
+        CsrpMessage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.0.0/csrpmessagebuilder/" class="md-nav__link">
+        CsrpMessageBuilder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.0.0/csrpmessagefragment/" class="md-nav__link">
+        CsrpMessageFragment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.0.0/messagestream/" class="md-nav__link">
+        MessageStream
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.0.0/streamconnection/" class="md-nav__link">
+        StreamConnection
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.0.0/fragmentbuffer/" class="md-nav__link">
+        FragmentBuffer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.0.0/routingutil/" class="md-nav__link">
+        RoutingUtil
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2.0.0/fragmenter/" class="md-nav__link">
+        Fragmenter
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
     
   </ul>
 </nav>
@@ -616,8 +876,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#streamconnection-new" class="md-nav__link">
-    StreamConnection new
+  <a href="#csrpmessagebuilder-new" class="md-nav__link">
+    CsrpMessageBuilder new
   </a>
   
 </li>
@@ -636,22 +896,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rbxscriptconnection-connection" class="md-nav__link">
-    RBXScriptConnection Connection
+  <a href="#string-sender" class="md-nav__link">
+    string Sender
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#boolean-connected" class="md-nav__link">
-    boolean Connected
+  <a href="#string-recipients" class="md-nav__link">
+    {string} Recipients
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#string-fragmentbuffer-buffers" class="md-nav__link">
-    {[string]: FragmentBuffer} Buffers
+  <a href="#string-interactionid" class="md-nav__link">
+    string InteractionId
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-any-options" class="md-nav__link">
+    {[string]: any} Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-body" class="md-nav__link">
+    string? Body
   </a>
   
 </li>
@@ -670,8 +944,57 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#void-disconnect" class="md-nav__link">
-    void Disconnect
+  <a href="#csrpmessagebuilder-setsender" class="md-nav__link">
+    CsrpMessageBuilder SetSender
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-setrecipients" class="md-nav__link">
+    CsrpMessageBuilder SetRecipients
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-addrecipient" class="md-nav__link">
+    CsrpMessageBuilder AddRecipient
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-excluderecipient" class="md-nav__link">
+    CsrpMessageBuilder ExcludeRecipient
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-setinteractionid" class="md-nav__link">
+    CsrpMessageBuilder SetInteractionId
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-setoption" class="md-nav__link">
+    CsrpMessageBuilder SetOption
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessagebuilder-setbody" class="md-nav__link">
+    CsrpMessageBuilder SetBody
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrpmessage-build" class="md-nav__link">
+    CsrpMessage Build
   </a>
   
 </li>
@@ -699,32 +1022,68 @@
   
 
 
-<h1 id="streamconnection">StreamConnection</h1>
-<p>The <code>StreamConnection</code> class stores a single connection to a MessageStream along with the buffers used to store the fragments of a message. It is returned by the <a href="../messagestream/#streamconnection-subscribe">MessageStream:Subscribe</a> method.</p>
+<h1 id="csrpmessagebuilder">CsrpMessageBuilder</h1>
+<p>A utility class for creating valid CsrpMessage objects.</p>
 <h2 id="constructors">Constructors</h2>
-<h3 id="streamconnection-new"><a href="./">StreamConnection</a> new</h3>
-<div class="highlight"><pre><span></span><code><span class="n">StreamConnection</span><span class="p">.</span><span class="n">new</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">connection</span><span class="p">:</span> <span class="n">RBXScriptConnection</span><span class="p">,</span> <span class="n">buffers</span><span class="p">:</span> <span class="p">{[</span><span class="n">string</span><span class="p">]:</span> <span class="n">FragmentBuffer</span><span class="p">}):</span> <span class="n">StreamConnection</span>
+<h3 id="csrpmessagebuilder-new"><a href="./">CsrpMessageBuilder</a> new</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">.</span><span class="n">new</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
 </code></pre></div>
-<p>Returns a new <a href="./">StreamConnection</a> object with the given connection and buffers.</p>
-<p>Arguments:</p>
-<ol>
-<li><a href="https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptConnection"><code>RBXScriptConnection</code></a> <code>connection</code> - The connection to the MessageStream.</li>
-<li><a href="https://create.roblox.com/docs/scripting/luau/tables#dictionaries"><code>{[string]: FragmentBuffer}</code></a> <code>buffers</code> - The buffers used to store the fragments of a message.</li>
-</ol>
+<p>Returns a new <a href="./">CsrpMessageBuilder</a> object.</p>
 <hr />
 <h2 id="properties">Properties</h2>
-<h3 id="rbxscriptconnection-connection"><a href="https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptConnection">RBXScriptConnection</a> Connection</h3>
-<p>The connection to the MessagingService topic.</p>
-<h3 id="boolean-connected"><a href="https://create.roblox.com/docs/scripting/luau/booleans">boolean</a> Connected</h3>
-<p>Whether the connection is still active.</p>
-<h3 id="string-fragmentbuffer-buffers"><a href="https://create.roblox.com/docs/scripting/luau/tables#dictionaries">{[string]: FragmentBuffer}</a> Buffers</h3>
-<p>The buffers used to store the fragments of a message. A message with a given interaction ID will be stored in the buffer with the same key. A buffer is cleared when the last fragment of a message is received.</p>
+<h3 id="string-sender"><a href="https://create.roblox.com/docs/scripting/luau/strings">string</a> Sender</h3>
+<p>The message sender's JobId. Defaults to the current server's JobId.</p>
+<h3 id="string-recipients"><a href="https://create.roblox.com/docs/scripting/luau/tables">{string}</a> Recipients</h3>
+<p>A table of the message recipients' JobIds. Defaults to an empty table.</p>
+<h3 id="string-interactionid"><a href="https://create.roblox.com/docs/scripting/luau/strings">string</a> InteractionId</h3>
+<p>The message interaction ID. A random GUID will be generated when calling the constructor.</p>
+<h3 id="string-any-options"><a href="https://create.roblox.com/docs/scripting/luau/tables#dictionaries">{[string]: any}</a> Options</h3>
+<p>A table of additional message options. Defaults to an empty table.</p>
+<h3 id="string-body"><a href="https://create.roblox.com/docs/scripting/luau/strings">string?</a> Body</h3>
+<p>The message body. Defaults to <code>nil</code>.</p>
 <hr />
 <h2 id="methods">Methods</h2>
-<h3 id="void-disconnect"><a href="./#void-disconnect">void</a> Disconnect</h3>
-<div class="highlight"><pre><span></span><code><span class="n">StreamConnection</span><span class="p">:</span><span class="n">Disconnect</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+<h3 id="csrpmessagebuilder-setsender"><a href="./">CsrpMessageBuilder</a> SetSender</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">:</span><span class="n">SetSender</span><span class="p">(</span><span class="n">sender</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">CsrpMessageBuilder</span>
 </code></pre></div>
-<p>Disconnects the connection to the MessagingService topic and disposes of the buffers.</p>
+<p>Sets the message sender's JobId. Throws an error if the sender contains semicolons. Returns the <a href="./">CsrpMessageBuilder</a> object for chaining.</p>
+<h3 id="csrpmessagebuilder-setrecipients"><a href="./">CsrpMessageBuilder</a> SetRecipients</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">:</span><span class="n">SetRecipients</span><span class="p">(</span><span class="n">recipients</span><span class="p">:</span> <span class="p">{</span><span class="n">string</span><span class="p">}):</span> <span class="n">CsrpMessageBuilder</span>
+</code></pre></div>
+<p>Sets the message recipients' JobIds. Throws an error if any of the recipients contain semicolons. Returns the <a href="./">CsrpMessageBuilder</a> object for chaining.</p>
+<h3 id="csrpmessagebuilder-addrecipient"><a href="./">CsrpMessageBuilder</a> AddRecipient</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">:</span><span class="n">AddRecipient</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">excludeCurrentForBroadcast</span><span class="p">:</span> <span class="n">boolean</span><span class="err">?</span><span class="p">):</span> <span class="n">CsrpMessageBuilder</span>
+</code></pre></div>
+<p>Adds a recipient to the message. Throws an error if the recipient contains semicolons. Returns the <a href="./">CsrpMessageBuilder</a> object for chaining.</p>
+<p>If <code>recipient</code> is an empty string, the message will be broadcast to all servers. If <code>excludeCurrentForBroadcast</code> is <code>true</code> (default), the current server's JobId will be excluded from the broadcast. Setting <code>excludeCurrentForBroadcast</code> to <code>false</code> will cause the message to be broadcast to all servers, including the current server.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If <code>excludeCurrentForBroadcast</code> is set to <code>false</code> when broadcasting to all servers, the sender will also receive the message. Keep this in mind in order to avoid infinite loops.</p>
+</div>
+<h3 id="csrpmessagebuilder-excluderecipient"><a href="./">CsrpMessageBuilder</a> ExcludeRecipient</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">:</span><span class="n">ExcludeRecipient</span><span class="p">(</span><span class="n">recipient</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">CsrpMessageBuilder</span>
+</code></pre></div>
+<p>Excludes a recipient from the message by adding it to the Recipients list and prefixing the recipient with <code>-</code>. Throws an error if the recipient contains semicolons. Returns the <a href="./">CsrpMessageBuilder</a> object for chaining.</p>
+<h3 id="csrpmessagebuilder-setinteractionid"><a href="./">CsrpMessageBuilder</a> SetInteractionId</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">:</span><span class="n">SetInteractionId</span><span class="p">(</span><span class="n">interactionId</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">CsrpMessageBuilder</span>
+</code></pre></div>
+<p>Sets the message interaction ID. Throws an error if the interaction ID contains semicolons. Returns the <a href="./">CsrpMessageBuilder</a> object for chaining.</p>
+<h3 id="csrpmessagebuilder-setoption"><a href="./">CsrpMessageBuilder</a> SetOption</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">:</span><span class="n">SetOption</span><span class="p">(</span><span class="n">option</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">any</span><span class="p">):</span> <span class="n">CsrpMessageBuilder</span>
+</code></pre></div>
+<p>Sets an option on the message. Throws an error if the key or value contain semicolons, commas or equals signs. Returns the <a href="./">CsrpMessageBuilder</a> object for chaining.</p>
+<h3 id="csrpmessagebuilder-setbody"><a href="./">CsrpMessageBuilder</a> SetBody</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">:</span><span class="n">SetBody</span><span class="p">(</span><span class="n">body</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">CsrpMessageBuilder</span>
+</code></pre></div>
+<p>Sets the message body. Returns the <a href="./">CsrpMessageBuilder</a> object for chaining.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The message body can contain any characters, including semicolons, commas and equals signs.</p>
+</div>
+<h3 id="csrpmessage-build"><a href="../csrpmessage/">CsrpMessage</a> Build</h3>
+<div class="highlight"><pre><span></span><code><span class="n">CsrpMessageBuilder</span><span class="p">:</span><span class="n">Build</span><span class="p">():</span> <span class="n">CsrpMessage</span>
+</code></pre></div>
+<p>Builds the message. Returns the <a href="../csrpmessage/">CsrpMessage</a> object.</p>
 
 
 
@@ -746,7 +1105,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../messagestream/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MessageStream" rel="prev">
+          <a href="../csrpmessage/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CsrpMessage" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -755,20 +1114,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                MessageStream
+                CsrpMessage
               </div>
             </div>
           </a>
         
         
           
-          <a href="../fragmentbuffer/" class="md-footer__link md-footer__link--next" aria-label="Next: FragmentBuffer" rel="next">
+          <a href="../messagestream/" class="md-footer__link md-footer__link--next" aria-label="Next: MessageStream" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                FragmentBuffer
+                MessageStream
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -800,10 +1159,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.footer"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.51198bba.min.js"></script>
       
     
   </body>
