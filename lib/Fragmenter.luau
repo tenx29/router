@@ -2,52 +2,58 @@
 local CsrpMessage = require(script.Parent.CsrpMessage)
 type CsrpMessage = CsrpMessage.CsrpMessage
 
-local Fragmenter = {}
-local MAX_MESSAGE_SIZE = 1000
+local CsrpMessageFragment = require(script.Parent.CsrpMessageFragment)
+type CsrpMessageFragment = CsrpMessageFragment.CsrpMessageFragment
 
-Fragmenter.FragmentMessage = function(message: CsrpMessage): {CsrpMessage}
-	if #tostring(message) <= MAX_MESSAGE_SIZE then
-		return {message}
+local Fragmenter = {}
+local MAX_MESSAGE_SIZE: number = 1000
+
+Fragmenter.FragmentMessage = function(message: CsrpMessage, maxLength: number?): {CsrpMessageFragment}
+	maxLength = maxLength or MAX_MESSAGE_SIZE
+	if #tostring(message) <= maxLength::number then
+		return {CsrpMessageFragment.new(message.InteractionId, 1, 1, message:fragmentableToString())}
 	else
-		local fragments: {CsrpMessage} = {}
-		local sections = tostring(message):split(";")
-		local headerSections = {}
-		table.move(sections, 1, 6, 1, headerSections)
-		local header = table.concat(headerSections, ";")..";"
-		local body = table.concat(sections, ";", 7)
-		assert(#header < MAX_MESSAGE_SIZE, "Message header exceeds fragment length limit")
+		local fragments: {CsrpMessageFragment} = {}
+		local interactionId = message.InteractionId
+		local fragmentableString = message:fragmentableToString()
+
+		-- Calculate the overhead needed for the fragment labels using the new CSRPv2 format
+		-- as well as an improved fragment allocation algorithm
 		
-		-- Calculate the overhead needed for the fragment labels
-		local maxBodyLength = MAX_MESSAGE_SIZE - #header
-		local minFragments = math.floor(#body/maxBodyLength)	    -- very rough estimate of the number of fragments needed
-		local maxFragLength = math.ceil(math.log10(minFragments)+1)*2	-- maximum characters taken up by the fragment headers (both order and count)
-		
-		assert(#header + maxFragLength < MAX_MESSAGE_SIZE, "Message too long to include fragment headers")
-		
-		-- Fragment the message
-		local fragBodyLength = MAX_MESSAGE_SIZE - #header - maxFragLength
-		for i = 1, #body, fragBodyLength do
-			table.insert(fragments, CsrpMessage.fromString(header..body:sub(i, i+fragBodyLength-1)))
-		end
-		
-		-- Add fragment labels
-		for i, fragment in fragments do
-			fragment.Fragment = i
-			fragment.FragmentCount = #fragments
+		-- Number of characters taken up by interactionId and 3 semicolons
+		local fragHeaderLength = #interactionId + 3
+
+		-- Max number of characters taken up by the fragment and fragment count
+		local allocatedNumberLength = 2 * math.floor(math.log10(#fragmentableString))
+
+		-- Throw an error if too much space is taken up by the fragment labels
+		assert(fragHeaderLength + allocatedNumberLength < maxLength::number, "Fragment labels exceed fragment length limit")
+
+		-- Number of characters available for the body
+		local maxBodyLength = maxLength::number - fragHeaderLength - allocatedNumberLength
+
+		-- Number of fragments required to send the message
+		local fragmentCount = math.ceil(#fragmentableString / maxBodyLength)
+
+		-- Calculate the length of each fragment
+		local fragmentLength = math.ceil(#fragmentableString / fragmentCount)
+
+		-- Split the message into fragments
+		for i = 1, fragmentCount do
+			local fragment = fragmentableString:sub((i - 1) * fragmentLength + 1, i * fragmentLength)
+			local fragmentMessage = CsrpMessageFragment.new(interactionId, i, fragmentCount, fragment)
+			table.insert(fragments, fragmentMessage)
 		end
 		
 		return fragments
 	end
 end
 
-Fragmenter.DefragmentMessages = function(messages: {CsrpMessage}): CsrpMessage
+Fragmenter.DefragmentMessages = function(messages: {CsrpMessageFragment}): CsrpMessage
 	-- Prepare header
 	local first = messages[1]
-	local origin = first.Sender
-	local target = first.Recipients
-	local id = first.InteractionId
-	local options = first.Options
-	local body = ""
+	local interactionId = first.InteractionId
+	local content = ""
 	
 	-- Sort the input table by fragment number
 	table.sort(messages, function(a, b)
@@ -58,9 +64,9 @@ Fragmenter.DefragmentMessages = function(messages: {CsrpMessage}): CsrpMessage
 	
 	-- Concatenate the fragmented data
 	for _, fragment in messages do
-		body ..= fragment.Body or ""
+		content ..= fragment.Content
 	end
-	return CsrpMessage.new(origin, target, id, nil, nil, options, body)
+	return CsrpMessage.fromString(`{interactionId};;;{content}`)
 end
 
 export type Fragmenter = typeof(Fragmenter)
