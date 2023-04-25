@@ -32,7 +32,7 @@ The MessagingService topic used by the MessageStream.
 
 ## Methods
 
-### [MessageStream](messagestream.md) Send
+### [void](messagestream.md#void-send) Send
 
 ```lua
 MessageStream:Send = function(message: CsrpMessage)
