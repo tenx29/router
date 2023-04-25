@@ -31,62 +31,56 @@ return TestSuite.new("CSRP Message Tests", {
     end):ExpectFail("illegal character"),
 
     TestCase.new("Constructor fails if any key in options contains ;", function()
-        CsrpMessage.new(nil, nil, "", nil, nil, {["invalid;key"] = "value"})
+        CsrpMessage.new(nil, nil, "", {["invalid;key"] = "value"})
     end):ExpectFail("illegal character"),
 
     TestCase.new("Constructor fails if any value in options contains ;", function()
-        CsrpMessage.new(nil, nil, "", nil, nil, {invalid = "invalid;value"})
+        CsrpMessage.new(nil, nil, "", {invalid = "invalid;value"})
     end):ExpectFail("illegal character"),
 
     TestCase.new("Options table is serialized correctly", function()
-        local message = CsrpMessage.new(nil, nil, "", nil, nil, {key1 = "value1", key2 = "value2"})
+        local message = CsrpMessage.new(nil, nil, "", {key1 = "value1", key2 = "value2"})
         Assert.Equals("key1=value1,key2=value2", message.Options)
     end),
 
     TestCase.new("CSRP message is serialized correctly", function()
-        local message = CsrpMessage.new("sender", {"recipient1", "recipient2"}, "interaction", 1, 2, {key1 = "value1", key2 = "value2"}, "body")
-        Assert.Equals("interaction;1;2;sender;recipient1,recipient2;key1=value1,key2=value2;body", tostring(message))
+        local message = CsrpMessage.new("sender", {"recipient1", "recipient2"}, "interaction", {key1 = "value1", key2 = "value2"}, "body")
+        Assert.Equals("interaction;sender;recipient1,recipient2;key1=value1,key2=value2;body", tostring(message))
     end),
 
     TestCase.new("CSRP message is serialized correctly if body contains ;", function()
-        local message = CsrpMessage.new("sender", {"recipient1", "recipient2"}, "interaction", 1, 2, {key1 = "value1", key2 = "value2"}, "body that contains a ; character")
-        Assert.Equals("interaction;1;2;sender;recipient1,recipient2;key1=value1,key2=value2;body that contains a ; character", tostring(message))
+        local message = CsrpMessage.new("sender", {"recipient1", "recipient2"}, "interaction", {key1 = "value1", key2 = "value2"}, "body that contains a ; character")
+        Assert.Equals("interaction;sender;recipient1,recipient2;key1=value1,key2=value2;body that contains a ; character", tostring(message))
     end),
 
     TestCase.new("CSRP message is serialized correctly with missing sections", function()
-        local message = CsrpMessage.new(nil, nil, "interaction", nil, nil, nil, "body that contains a ; character")
-        Assert.Equals("interaction;;;;;;body that contains a ; character", tostring(message))
+        local message = CsrpMessage.new(nil, nil, "interaction", nil, "body that contains a ; character")
+        Assert.Equals("interaction;;;;body that contains a ; character", tostring(message))
     end),
 
     TestCase.new("CSRP message is parsed correctly", function()
-        local message = CsrpMessage.fromString("interaction;1;2;sender;recipient1,recipient2;key1=value1,key2=value2;body")
+        local message = CsrpMessage.fromString("interaction;sender;recipient1,recipient2;key1=value1,key2=value2;body")
         Assert.Equals("sender", message.Sender)
         Assert.Equals("recipient1,recipient2", message.Recipients)
         Assert.Equals("interaction", message.InteractionId)
-        Assert.Equals(1, message.Fragment)
-        Assert.Equals(2, message.FragmentCount)
         Assert.Equals("key1=value1,key2=value2", message.Options)
         Assert.Equals("body", message.Body)
     end),
 
     TestCase.new("CSRP message is parsed correctly if body contains ;", function()
-        local message = CsrpMessage.fromString("interaction;1;2;sender;recipient1,recipient2;key1=value1,key2=value2;body that contains a ; character")
+        local message = CsrpMessage.fromString("interaction;sender;recipient1,recipient2;key1=value1,key2=value2;body that contains a ; character")
         Assert.Equals("sender", message.Sender)
         Assert.Equals("recipient1,recipient2", message.Recipients)
         Assert.Equals("interaction", message.InteractionId)
-        Assert.Equals(1, message.Fragment)
-        Assert.Equals(2, message.FragmentCount)
         Assert.Equals("key1=value1,key2=value2", message.Options)
         Assert.Equals("body that contains a ; character", message.Body)
     end),
 
     TestCase.new("CSRP message is parsed correctly with missing sections", function()
-        local message = CsrpMessage.fromString("interaction;;;;;;body that contains a ; character")
+        local message = CsrpMessage.fromString("interaction;;;;body that contains a ; character")
         Assert.Equals("", message.Sender)
         Assert.Equals("", message.Recipients)
         Assert.Equals("interaction", message.InteractionId)
-        Assert.Nil(message.Fragment)
-        Assert.Nil(message.FragmentCount)
         Assert.Equals("", message.Options)
         Assert.Equals("body that contains a ; character", message.Body)
     end),
