@@ -99,6 +99,15 @@ CsrpMessage.__tostring = function(self: CsrpMessage)
 	return `{interactionId};{fragment};{fragmentCount};{sender};{recipients};{options};{body}`
 end
 
+-- Convert all fragmentable fields to a string
+CsrpMessage.fragmentableToString = function(self: CsrpMessage)
+	local sender = self.Sender
+	local recipients = self.Recipients
+	local options = self.Options
+	local body = self.Body or ""
+	return `{sender};{recipients};{options};{body}`
+end
+
 export type CsrpMessage = typeof(CsrpMessage.new("", nil, "", nil, nil, nil, nil))
 
 return CsrpMessage
