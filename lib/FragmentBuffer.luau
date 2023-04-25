@@ -5,8 +5,8 @@
     Class for buffering CSRP messages that are split into multiple fragments.
 ]]
 
-local CsrpMessage = require(script.Parent.CsrpMessage)
-export type CsrpMessage = CsrpMessage.CsrpMessage
+local CsrpMessageFragment = require(script.Parent.CsrpMessageFragment)
+export type CsrpMessageFragment = CsrpMessageFragment.CsrpMessageFragment
 
 local FragmentBuffer = {}
 FragmentBuffer.__index = FragmentBuffer
@@ -47,7 +47,7 @@ FragmentBuffer.new = function(timeout: number?): FragmentBuffer
 end
 
 -- Adds a fragment to the buffer.
-FragmentBuffer.Add = function(self: FragmentBuffer, fragment: CsrpMessage)
+FragmentBuffer.Add = function(self: FragmentBuffer, fragment: CsrpMessageFragment)
     assert(self.CutOffTime > tick(), "Attempted to add fragment to timed out buffer")
     local fragmentNumber = fragment.Fragment or 1
     self.TotalFragments = fragment.FragmentCount or self.TotalFragments

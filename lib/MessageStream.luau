@@ -9,8 +9,10 @@ local MessagingService = game:GetService("MessagingService")
 local RouterLib = script.Parent
 local CsrpMessage = require(RouterLib.CsrpMessage)
 local CsrpMessageBuilder = require(RouterLib.CsrpMessageBuilder)
+local CsrpMessageFragment = require(RouterLib.CsrpMessageFragment)
 export type CsrpMessage = CsrpMessage.CsrpMessage
 export type CsrpMessageBuilder = CsrpMessageBuilder.CsrpMessageBuilder
+export type CsrpMessageFragment = CsrpMessageFragment.CsrpMessageFragment
 
 local FragmentBuffer = require(RouterLib.FragmentBuffer)
 local StreamConnection = require(RouterLib.StreamConnection)
@@ -54,8 +56,8 @@ MessageStream.Send = function(self: MessageStream, message: CsrpMessage)
 end
 
 -- Buffers a fragment and returns a boolean indicating whether the buffer is complete.
-local function BufferFragment(connection: StreamConnection, fragment: CsrpMessage, bufferTimeout: number?): boolean
-    local interactionId = fragment.InteractionId
+local function BufferFragment(connection: StreamConnection, fragment: CsrpMessageFragment, bufferTimeout: number?): boolean
+    local interactionId: string = fragment.InteractionId or ""
     if not connection.Buffers[interactionId] then
         local buffer = FragmentBuffer.new(bufferTimeout)
         connection.Buffers[interactionId] = buffer::FragmentBuffer
@@ -77,11 +79,7 @@ MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, 
     local buffers: {[string]: FragmentBuffer} = {}
     local streamConnection: StreamConnection
     local connection = MessagingService:SubscribeAsync(self.Topic, function(data: {Data: string, Sent: number})
-        local message = CsrpMessage.fromString(data.Data)
-        -- Check if the message should be processed by the current server.
-        if not RoutingUtil.IsCurrentServerRecipient(message) then
-            return
-        end
+        local message = CsrpMessageFragment.fromString(data.Data)
         -- If the message has an interaction ID, it can be handled as a fragment.
         if message.InteractionId then
             local bufferIsComplete = BufferFragment(streamConnection, message, self.BufferTimeout)
@@ -89,10 +87,20 @@ MessageStream.Subscribe = function(self: MessageStream, callback: (CsrpMessage, 
                 local defragmentedMessage = Fragmenter.DefragmentMessages(buffers[message.InteractionId].Fragments)
                 streamConnection.Buffers[message.InteractionId]:Dispose()
                 streamConnection.Buffers[message.InteractionId] = nil
+                -- Check if the message should be processed by the current server.
+                if not RoutingUtil.IsCurrentServerRecipient(defragmentedMessage) then
+                    return
+                end
                 callback(defragmentedMessage, data.Sent)
             end
         else
-            callback(message, data.Sent)
+            -- Defragment the message and pass it to the callback.
+            local defragmentedMessage = Fragmenter.DefragmentMessages({message})
+            -- Check if the message should be processed by the current server.
+            if not RoutingUtil.IsCurrentServerRecipient(defragmentedMessage) then
+                return
+            end
+            callback(defragmentedMessage, data.Sent)
         end
     end)
     streamConnection = StreamConnection.new(connection, buffers)
