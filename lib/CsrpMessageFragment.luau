@@ -9,6 +9,12 @@ local CsrpMessageFragment = {}
 CsrpMessageFragment.__index = CsrpMessageFragment
 
 CsrpMessageFragment.new = function(interactionId: string?, fragment: number?, fragmentCount: number?, content: string?): CsrpMessageFragment
+    if interactionId then
+        assert(interactionId:find(";") == nil, "Illegal character (;) in interaction ID: "..interactionId)
+    end
+    if fragment or fragmentCount then
+        assert(interactionId ~= nil, "Interaction ID must be specified for fragmented messages")
+    end
     local self = setmetatable({}, CsrpMessageFragment)
     self.InteractionId = if interactionId == "" then nil else interactionId
     self.Fragment = fragment
@@ -18,7 +24,12 @@ CsrpMessageFragment.new = function(interactionId: string?, fragment: number?, fr
 end
 
 CsrpMessageFragment.fromString = function(message: string): CsrpMessageFragment
-    local interactionId, fragment, fragmentCount, content = message:match("([^;]+);([^;]+);([^;]+);(.*)")
+    local sections = message:split(";")
+    local interactionId = sections[1]
+    local fragment = sections[2]
+    local fragmentCount = sections[3]
+    local content = table.concat(sections, ";", 4)
+    assert(#sections >= 4, "Failed to parse fragment: sections missing")
     return CsrpMessageFragment.new(interactionId, tonumber(fragment), tonumber(fragmentCount), content)
 end
 
