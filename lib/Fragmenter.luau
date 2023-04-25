@@ -66,7 +66,7 @@ Fragmenter.DefragmentMessages = function(messages: {CsrpMessageFragment}): CsrpM
 	for _, fragment in messages do
 		content ..= fragment.Content
 	end
-	return CsrpMessage.fromString(`{interactionId};;;{content}`)
+	return CsrpMessage.fromString(`{interactionId};{content}`)
 end
 
 export type Fragmenter = typeof(Fragmenter)

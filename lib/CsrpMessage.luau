@@ -60,13 +60,11 @@ local function optionsToString(options: {[string]: any} | string?): string
 	end
 end
 
-CsrpMessage.new = function(sender: string?, recipients: {string} | string?, interactionId: string, fragment: number?, fragmentCount: number?, options: {[string]: any} | string?, body: string?): CsrpMessage
+CsrpMessage.new = function(sender: string?, recipients: {string} | string?, interactionId: string, options: {[string]: any} | string?, body: string?): CsrpMessage
 	local self = setmetatable({}, CsrpMessage)
 	self.Sender = validateSectionString(sender or game.JobId)
 	self.Recipients = validateSectionString(recipientsToString(recipients))
 	self.InteractionId = validateSectionString(interactionId)
-	self.Fragment = fragment
-	self.FragmentCount = fragmentCount
 	self.Options = optionsToString(options)
 	self.Body = body
 	return self
@@ -75,16 +73,14 @@ end
 -- Parse a CSP message string and convert it to a CsrpMessage object
 CsrpMessage.fromString = function(message: string): CsrpMessage
 	local sections = message:split(";")
-	assert(#sections >= 7, "Failed to parse message: sections missing")
+	assert(#sections >= 5, "Failed to parse message: sections missing")
 	local interactionId = sections[1]
-	local fragment = if #sections[2] > 0 then tonumber(sections[2]) else nil
-	local fragmentCount = if #sections[3] > 0 then tonumber(sections[3]) else nil
-	local sender = sections[4]
-	local recipients = sections[5]
-	local options = sections[6]
-	local concatBody = table.concat(sections, ";", 7)
+	local sender = sections[2]
+	local recipients = sections[3]
+	local options = sections[4]
+	local concatBody = table.concat(sections, ";", 5)
 	local body = if #concatBody == 0 then nil else concatBody
-	return CsrpMessage.new(sender, recipients, interactionId, fragment, fragmentCount, options, body)
+	return CsrpMessage.new(sender, recipients, interactionId, options, body)
 end
 
 -- Convert a CsrpMessage object to a string
@@ -92,11 +88,9 @@ CsrpMessage.__tostring = function(self: CsrpMessage)
 	local sender = self.Sender
 	local recipients = self.Recipients
 	local interactionId = self.InteractionId
-	local fragment = tostring(self.Fragment or "")
-	local fragmentCount = tostring(self.FragmentCount or "")
 	local options = self.Options
 	local body = self.Body or ""
-	return `{interactionId};{fragment};{fragmentCount};{sender};{recipients};{options};{body}`
+	return `{interactionId};{sender};{recipients};{options};{body}`
 end
 
 -- Convert all fragmentable fields to a string
@@ -108,6 +102,6 @@ CsrpMessage.fragmentableToString = function(self: CsrpMessage)
 	return `{sender};{recipients};{options};{body}`
 end
 
-export type CsrpMessage = typeof(CsrpMessage.new("", nil, "", nil, nil, nil, nil))
+export type CsrpMessage = typeof(CsrpMessage.new("", nil, "", nil, nil))
 
 return CsrpMessage

@@ -94,7 +94,7 @@ CsrpMessageBuilder.SetBody = function(self: CsrpMessageBuilder, body: any?): Csr
 end
 
 CsrpMessageBuilder.Build = function(self: CsrpMessageBuilder): CsrpMessage
-	return CsrpMessage.new(self.Sender, self.Recipients, self.InteractionId, nil, nil, self.Options, self.Body)
+	return CsrpMessage.new(self.Sender, self.Recipients, self.InteractionId, self.Options, self.Body)
 end
 
 export type CsrpMessageBuilder = typeof(CsrpMessageBuilder.new())
