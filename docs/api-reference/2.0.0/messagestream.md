@@ -1,6 +1,6 @@
 # MessageStream
 
-The `MessageStream` class is a wrapper for MessagingService that handles routing and fragmentation according to the [CSRP](../getting-started/protocol.md) specification. A MessageStream object represents a single MessagingService topic.
+The `MessageStream` class is a wrapper for MessagingService that handles routing and fragmentation according to the [CSRP](../../getting-started/protocol.md) specification. A MessageStream object represents a single MessagingService topic.
 
 ## Constructors
 
