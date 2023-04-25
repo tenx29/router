@@ -15,5 +15,5 @@ local initResponder = require(e2e.Responder)
 initResponder()
 
 -- Run E2E test listener in Roblox Studio and in the deployed game
-local initE2E = require(e2e)
+local initE2E = require(e2e.Listener)
 initE2E()
