@@ -5,9 +5,7 @@ The Router library uses a custom Cross-Server Routing Protocol (CSRP) to communi
 The CSRP is designed to be a simple and easy to implement protocol that can be used to communicate between servers using Roblox's built-in MessagingService. Understanding the protocol is not required to use Router as the protocol-specific aspects are abstracted away by the library. However, the CSRP places some restrictions on message headers that may be useful to know about.
 
 !!! important
-    Router is currently using version 1 of the CSRP specification (CSRPv1). The library is currently being updated to use [CSRPv2](https://www.github.com/tenx29/roblox-csrp/tree/main/v2), which is not backwards compatible with CSRPv1. CSRPv2 will reduce the size of fragmented messages which will reduce the chance of messages being dropped by Roblox's MessagingService.
-
-    Once Router is updated to CSRPv2, documentation will be updated to reflect the changes.
+    Router has been upgraded to use [CSRPv2](https://www.github.com/tenx29/roblox-csrp/tree/main/v2) in release 2.0.0. This version of the protocol is not backwards compatible with CSRPv1. If you are using Router 1.0.0, you should upgrade to 2.0.0 or later.
 
 ## Routing
 

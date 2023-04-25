@@ -6,3 +6,6 @@ The Router library is written using strict type checking, making it integrate se
 
 !!! info
     Basic understanding of Luau is assumed.
+
+!!! important
+    If you are currently using Router 1.0.0, refer to the [2.0.0 migration guide](migrating-to-2.0.0.md) for information on how to upgrade.

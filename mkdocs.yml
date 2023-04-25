@@ -5,19 +5,31 @@ repo_url: https://github.com/tenx29/router/
 
 nav:
   - About: index.md
+  - Migrating to 2.0.0: migrating-to-2.0.0.md
   - Getting Started:
     - Installation: getting-started/installation.md
     - Cross-Server Routing Protocol: getting-started/protocol.md
     - Creating Messages: getting-started/creating-messages.md
     - Sending & Receiving Messages: getting-started/messaging.md
   - API Reference:
-    - CsrpMessage: api-reference/csrpmessage.md
-    - CsrpMessageBuilder: api-reference/csrpmessagebuilder.md
-    - MessageStream: api-reference/messagestream.md
-    - StreamConnection: api-reference/streamconnection.md
-    - FragmentBuffer: api-reference/fragmentbuffer.md
-    - RoutingUtil: api-reference/routingutil.md
-    - Fragmenter: api-reference/fragmenter.md
+    - '1.0.0':
+      - CsrpMessage: api-reference/1.0.0/csrpmessage.md
+      - CsrpMessageBuilder: api-reference/1.0.0/csrpmessagebuilder.md
+      - MessageStream: api-reference/1.0.0/messagestream.md
+      - StreamConnection: api-reference/1.0.0/streamconnection.md
+      - FragmentBuffer: api-reference/1.0.0/fragmentbuffer.md
+      - RoutingUtil: api-reference/1.0.0/routingutil.md
+      - Fragmenter: api-reference/1.0.0/fragmenter.md
+    - '2.0.0':
+      - CsrpMessage: api-reference/2.0.0/csrpmessage.md
+      - CsrpMessageBuilder: api-reference/2.0.0/csrpmessagebuilder.md
+      - CsrpMessageFragment: api-reference/2.0.0/csrpmessagefragment.md 
+      - MessageStream: api-reference/2.0.0/messagestream.md
+      - StreamConnection: api-reference/2.0.0/streamconnection.md
+      - FragmentBuffer: api-reference/2.0.0/fragmentbuffer.md
+      - RoutingUtil: api-reference/2.0.0/routingutil.md
+      - Fragmenter: api-reference/2.0.0/fragmenter.md
+    
 
 extra_css:
 - stylesheets/extra.css
