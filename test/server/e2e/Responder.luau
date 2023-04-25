@@ -1,4 +1,4 @@
--- Responds to integration test messages
+-- Responds to end-to-end test messages
 local router = script.Parent.Parent.Parent.Router
 local CsrpMessage = require(router.CsrpMessage)
 local CsrpMessageBuilder = require(router.CsrpMessageBuilder)

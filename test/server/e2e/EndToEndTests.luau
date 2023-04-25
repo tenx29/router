@@ -11,7 +11,7 @@ local Assert = require(testlib.Assert)
 local stream = MessageStream.new()
 local connection
 
-return TestSuite.new("Router integration tests", {
+return TestSuite.new("Router E2E tests", {
     TestCase.new("Responses are received", function(env)
         local body = env.payload
         local message = CsrpMessageBuilder.new()

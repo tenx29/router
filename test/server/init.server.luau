@@ -8,12 +8,12 @@ if game.JobId == "" then
     print("Test results:\n"..report)
 end
 
-local integrationTests = script.integration
+local e2e = script.e2e
 
--- Initialise responder for integration tests
-local initResponder = require(integrationTests.Responder)
+-- Initialise responder for end-to-end tests
+local initResponder = require(e2e.Responder)
 initResponder()
 
--- Run integration tests in Roblox Studio and in the deployed game
-local initIntegration = require(integrationTests.Listener)
-initIntegration()
+-- Run E2E test listener in Roblox Studio and in the deployed game
+local initE2E = require(e2e)
+initE2E()
