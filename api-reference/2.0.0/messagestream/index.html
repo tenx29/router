@@ -675,8 +675,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#messagestream-send" class="md-nav__link">
-    MessageStream Send
+  <a href="#void-send" class="md-nav__link">
+    void Send
   </a>
   
 </li>
@@ -846,8 +846,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#messagestream-send" class="md-nav__link">
-    MessageStream Send
+  <a href="#void-send" class="md-nav__link">
+    void Send
   </a>
   
 </li>
@@ -904,7 +904,7 @@
 <p>The MessagingService topic used by the MessageStream.</p>
 <hr />
 <h2 id="methods">Methods</h2>
-<h3 id="messagestream-send"><a href="./">MessageStream</a> Send</h3>
+<h3 id="void-send"><a href="./#void-send">void</a> Send</h3>
 <div class="highlight"><pre><span></span><code><span class="n">MessageStream</span><span class="p">:</span><span class="n">Send</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">CsrpMessage</span><span class="p">)</span>
 </code></pre></div>
 <p>Send a <a href="../csrpmessage/">CsrpMessage</a> to the MessageStream's topic. Automatically fragments the message if it exceeds the maximum message size. Retries sending the message if it fails up to 10 times with a 1 second delay between each attempt.</p>
