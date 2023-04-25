@@ -3,6 +3,7 @@ local MessageStream = require(mock.MessageStream)
 
 local router = script.Parent.Parent.Parent.Router
 local CsrpMessageBuilder = require(router.CsrpMessageBuilder)
+local CsrpMessageFragment = require(router.CsrpMessageFragment)
 
 local testlib = script.Parent.Parent.testlib
 local testClasses = testlib.classes
@@ -64,16 +65,15 @@ return TestSuite.new("MessageStream tests", {
             local count, counter = getCounter()
             local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
+            local fragment1 = CsrpMessageFragment.new(message.InteractionId, 1, 2, message:fragmentableToString())
             message.FragmentCount = 2
             message.Fragment = 1
             local connection = stream:Subscribe(counter)
-            stream:Send(message)
+            stream:SendFragment(fragment1)
             Assert.NotNil(connection.Buffers[message.InteractionId])
             Assert.Equals(1, #connection.Buffers[message.InteractionId].Fragments)
-            local message2 = CsrpMessageBuilder.new():SetInteractionId(message.InteractionId):Build()
-            message2.FragmentCount = 2
-            message2.Fragment = 2
-            stream:Send(message2)
+            local fragment2 = CsrpMessageFragment.new(message.InteractionId, 2, 2, "")
+            stream:SendFragment(fragment2)
             Assert.Nil(connection.Buffers[message.InteractionId])
             connection:Disconnect()
             Assert.Equals(1, count())
@@ -84,34 +84,34 @@ return TestSuite.new("MessageStream tests", {
             local _, counter = getCounter()
             local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
-            message.FragmentCount = 2
-            message.Fragment = 1
+            local fragment1 = CsrpMessageFragment.new(message.InteractionId, 1, 2, message:fragmentableToString())
             local message2 = CsrpMessageBuilder.new():Build()
-            message2.FragmentCount = 2
-            message2.Fragment = 1
+            local fragment2 = CsrpMessageFragment.new(message2.InteractionId, 1, 2, message2:fragmentableToString())
             local connection = stream:Subscribe(counter)
             local buffers = connection.Buffers
-            stream:Send(message)
-            stream:Send(message2)
+            stream:SendFragment(fragment1)
+            stream:SendFragment(fragment2)
             Assert.NotNil(buffers[message.InteractionId])
             Assert.NotNil(buffers[message2.InteractionId])
 
             -- Verify that the right messages are in the right buffers
             Assert.Equals(1, #buffers[message.InteractionId].Fragments)
-            Assert.SerializedEquals(message, buffers[message.InteractionId].Fragments[1])
+            Assert.SerializedEquals(fragment1, buffers[message.InteractionId].Fragments[1])
             Assert.Equals(1, #buffers[message2.InteractionId].Fragments)
-            Assert.SerializedEquals(message2, buffers[message2.InteractionId].Fragments[1])
+            Assert.SerializedEquals(fragment2, buffers[message2.InteractionId].Fragments[1])
 
             -- Complete the buffers to free the memory
             local message3 = CsrpMessageBuilder.new():SetInteractionId(message.InteractionId):Build()
+            local fragment3 = CsrpMessageFragment.new(message.InteractionId, 2, 2, "")
             message3.FragmentCount = 2
             message3.Fragment = 2
             local message4 = CsrpMessageBuilder.new():SetInteractionId(message2.InteractionId):Build()
+            local fragment4 = CsrpMessageFragment.new(message2.InteractionId, 2, 2, "")
             message4.FragmentCount = 2
             message4.Fragment = 2
 
-            stream:Send(message3)
-            stream:Send(message4)
+            stream:SendFragment(fragment3)
+            stream:SendFragment(fragment4)
 
             Assert.Nil(buffers[message.InteractionId])
             Assert.Nil(buffers[message2.InteractionId])
@@ -125,17 +125,15 @@ return TestSuite.new("MessageStream tests", {
             local count, counter = getCounter()
             local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
-            message.FragmentCount = 2
-            message.Fragment = 1
+            local fragment1 = CsrpMessageFragment.new(message.InteractionId, 1, 2, message:fragmentableToString())
             local connection = stream:Subscribe(counter)
             local connection2 = stream:Subscribe(counter)
-            stream:Send(message)
-            Assert.SerializedEquals(message, connection.Buffers[message.InteractionId].Fragments[1])
-            Assert.SerializedEquals(message, connection2.Buffers[message.InteractionId].Fragments[1])
+            stream:SendFragment(fragment1)
+            Assert.SerializedEquals(fragment1, connection.Buffers[message.InteractionId].Fragments[1])
+            Assert.SerializedEquals(fragment1, connection2.Buffers[message.InteractionId].Fragments[1])
             local message2 = CsrpMessageBuilder.new():SetInteractionId(message.InteractionId):Build()
-            message2.FragmentCount = 2
-            message2.Fragment = 2
-            stream:Send(message2)
+            local fragment2 = CsrpMessageFragment.new(message.InteractionId, 2, 2, "")
+            stream:SendFragment(fragment2)
             Assert.Nil(connection.Buffers[message.InteractionId])
             Assert.Nil(connection2.Buffers[message.InteractionId])
             Assert.Equals(2, count())
@@ -162,10 +160,9 @@ return TestSuite.new("MessageStream tests", {
             local _, counter = getCounter()
             local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
-            message.FragmentCount = 2
-            message.Fragment = 1
+            local fragment1 = CsrpMessageFragment.new(message.InteractionId, 1, 2, message:fragmentableToString())
             local connection = stream:Subscribe(counter)
-            stream:Send(message)
+            stream:SendFragment(fragment1)
             Assert.NotNil(connection.Buffers[message.InteractionId])
             connection:Disconnect()
             Assert.Nil(connection.Buffers[message.InteractionId])
@@ -175,10 +172,9 @@ return TestSuite.new("MessageStream tests", {
             local count, counter = getCounter()
             local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
-            message.FragmentCount = 2
-            message.Fragment = 1
+            local fragment1 = CsrpMessageFragment.new(message.InteractionId, 1, 2, message:fragmentableToString())
             local connection = stream:Subscribe(function() end)
-            stream:Send(message)
+            stream:SendFragment(fragment1)
             connection.Buffers[message.InteractionId].TimedOut:Connect(counter)
             connection.Buffers[message.InteractionId].TimedOut:Wait()
             task.wait()
@@ -190,15 +186,14 @@ return TestSuite.new("MessageStream tests", {
             local count, counter = getCounter()
             local stream = MessageStream.new("test", 2)
             local message = CsrpMessageBuilder.new():Build()
-            message.FragmentCount = 2
-            message.Fragment = 1
+            local fragment1 = CsrpMessageFragment.new(message.InteractionId, 1, 2, message:fragmentableToString())
             local connection = stream:Subscribe(function() end)
-            stream:Send(message)
+            stream:SendFragment(fragment1)
             connection.Buffers[message.InteractionId].TimedOut:Connect(counter)
             connection.Buffers[message.InteractionId].TimedOut:Wait()
             task.wait()
             Assert.Equals(1, count())
-            stream:Send(message)
+            stream:SendFragment(fragment1)
         end):ExpectFail("Attempted to add fragment to timed out buffer"),
     }),
 
