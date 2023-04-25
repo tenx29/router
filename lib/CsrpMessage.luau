@@ -6,11 +6,14 @@
 	
 	Typical maximum length for messages is 1000 bytes due to MessagingService limits.
 	
-	Sender server ID					|Recipient server ID(s)				 |Interaction ID
-	xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx;yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy;zzzzzzzz-zzzz-zzzz-zzzzzzzzzzzz;
+	Interaction ID				   |Fragment number	|Fragment count
+	zzzzzzzz-zzzz-zzzz-zzzzzzzzzzzz;0000000000000000;9999999999999999;
 	
-	Fragment number	|Fragment count	 |Options					   |Body
-	0000000000000000;9999999999999999;exampleOption=value,option2=0;Example message here
+	Sender server ID	|Recipient server ID(s)	 |Options
+	xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx;yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy
+	
+	|Body
+	;exampleOption=value,option2=0;Example message here
 ]]
 
 
