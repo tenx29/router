@@ -45,21 +45,21 @@ return TestSuite.new("CSRP Message Tests", {
 
     TestCase.new("CSRP message is serialized correctly", function()
         local message = CsrpMessage.new("sender", {"recipient1", "recipient2"}, "interaction", 1, 2, {key1 = "value1", key2 = "value2"}, "body")
-        Assert.Equals("sender;recipient1,recipient2;interaction;1;2;key1=value1,key2=value2;body", tostring(message))
+        Assert.Equals("interaction;1;2;sender;recipient1,recipient2;key1=value1,key2=value2;body", tostring(message))
     end),
 
     TestCase.new("CSRP message is serialized correctly if body contains ;", function()
         local message = CsrpMessage.new("sender", {"recipient1", "recipient2"}, "interaction", 1, 2, {key1 = "value1", key2 = "value2"}, "body that contains a ; character")
-        Assert.Equals("sender;recipient1,recipient2;interaction;1;2;key1=value1,key2=value2;body that contains a ; character", tostring(message))
+        Assert.Equals("interaction;1;2;sender;recipient1,recipient2;key1=value1,key2=value2;body that contains a ; character", tostring(message))
     end),
 
     TestCase.new("CSRP message is serialized correctly with missing sections", function()
         local message = CsrpMessage.new(nil, nil, "interaction", nil, nil, nil, "body that contains a ; character")
-        Assert.Equals(";;interaction;;;;body that contains a ; character", tostring(message))
+        Assert.Equals("interaction;;;;;;body that contains a ; character", tostring(message))
     end),
 
     TestCase.new("CSRP message is parsed correctly", function()
-        local message = CsrpMessage.fromString("sender;recipient1,recipient2;interaction;1;2;key1=value1,key2=value2;body")
+        local message = CsrpMessage.fromString("interaction;1;2;sender;recipient1,recipient2;key1=value1,key2=value2;body")
         Assert.Equals("sender", message.Sender)
         Assert.Equals("recipient1,recipient2", message.Recipients)
         Assert.Equals("interaction", message.InteractionId)
@@ -70,7 +70,7 @@ return TestSuite.new("CSRP Message Tests", {
     end),
 
     TestCase.new("CSRP message is parsed correctly if body contains ;", function()
-        local message = CsrpMessage.fromString("sender;recipient1,recipient2;interaction;1;2;key1=value1,key2=value2;body that contains a ; character")
+        local message = CsrpMessage.fromString("interaction;1;2;sender;recipient1,recipient2;key1=value1,key2=value2;body that contains a ; character")
         Assert.Equals("sender", message.Sender)
         Assert.Equals("recipient1,recipient2", message.Recipients)
         Assert.Equals("interaction", message.InteractionId)
@@ -81,7 +81,7 @@ return TestSuite.new("CSRP Message Tests", {
     end),
 
     TestCase.new("CSRP message is parsed correctly with missing sections", function()
-        local message = CsrpMessage.fromString(";;interaction;;;;body that contains a ; character")
+        local message = CsrpMessage.fromString("interaction;;;;;;body that contains a ; character")
         Assert.Equals("", message.Sender)
         Assert.Equals("", message.Recipients)
         Assert.Equals("interaction", message.InteractionId)

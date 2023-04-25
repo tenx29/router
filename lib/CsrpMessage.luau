@@ -73,11 +73,11 @@ end
 CsrpMessage.fromString = function(message: string): CsrpMessage
 	local sections = message:split(";")
 	assert(#sections >= 7, "Failed to parse message: sections missing")
-	local sender = sections[1]
-	local recipients = sections[2]
-	local interactionId = sections[3]
-	local fragment = if #sections[4] > 0 then tonumber(sections[4]) else nil
-	local fragmentCount = if #sections[5] > 0 then tonumber(sections[5]) else nil
+	local interactionId = sections[1]
+	local fragment = if #sections[2] > 0 then tonumber(sections[2]) else nil
+	local fragmentCount = if #sections[3] > 0 then tonumber(sections[3]) else nil
+	local sender = sections[4]
+	local recipients = sections[5]
 	local options = sections[6]
 	local concatBody = table.concat(sections, ";", 7)
 	local body = if #concatBody == 0 then nil else concatBody
@@ -93,7 +93,7 @@ CsrpMessage.__tostring = function(self: CsrpMessage)
 	local fragmentCount = tostring(self.FragmentCount or "")
 	local options = self.Options
 	local body = self.Body or ""
-	return `{sender};{recipients};{interactionId};{fragment};{fragmentCount};{options};{body}`
+	return `{interactionId};{fragment};{fragmentCount};{sender};{recipients};{options};{body}`
 end
 
 export type CsrpMessage = typeof(CsrpMessage.new("", nil, "", nil, nil, nil, nil))
